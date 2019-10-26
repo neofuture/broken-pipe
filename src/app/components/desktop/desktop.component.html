@@ -1,2 +1,12 @@
 <app-titlebar></app-titlebar>
+<button (click)="addWindow('Button test window')">Add Window</button>
+<button (click)="logIt()">Log Windows</button>
+<div *ngFor="let windowItem of objectKeys(windowList)">
+  <app-window [windowItem]="windowList[windowItem]"
+              (close)="onClose(windowList[windowItem])"
+              (closed)="onClosed(windowList[windowItem])">
+  </app-window>
+</div>
 <app-toolbar></app-toolbar>
+
+

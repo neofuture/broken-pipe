@@ -1,0 +1,8 @@
+.closed {
+  opacity:0;
+  transition: all 400ms;
+}
+.open {
+  opacity:1;
+  transition: all 400ms;
+}

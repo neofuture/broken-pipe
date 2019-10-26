@@ -6,6 +6,7 @@ import { WindowComponent } from './components/window/window.component';
 import { DesktopComponent } from './components/desktop/desktop.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TitlebarComponent } from './components/titlebar/titlebar.component';
+import { PrettyPrintPipe } from './pipes/pretty-print.pipe';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TitlebarComponent } from './components/titlebar/titlebar.component';
     WindowComponent,
     DesktopComponent,
     ToolbarComponent,
-    TitlebarComponent
+    TitlebarComponent,
+    PrettyPrintPipe
   ],
   imports: [
     BrowserModule
