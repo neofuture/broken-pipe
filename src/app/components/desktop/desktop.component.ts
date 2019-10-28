@@ -41,11 +41,7 @@ export class DesktopComponent implements OnInit {
   }
 
   onClose(windowItem: WindowModel) {
-    for (const key in this.windowList) {
-      if (windowItem === this.windowList[key]) {
-        this.windowList[key].class = 'closed';
-      }
-    }
+    windowItem.class = 'closed';
   }
 
   onClosed(windowItem: WindowModel) {
@@ -74,14 +70,11 @@ export class DesktopComponent implements OnInit {
   }
 
   addWindow(title) {
-    let id = 0;
-
-    for (const key in this.windowList) {
-      if (parseInt(key, 10) >= id) {
-        id = parseInt(key, 10);
-      }
+    let id = Object.keys(this.windowList)[Object.keys(this.windowList).length - 1] || 0;
+    if (typeof id === 'string') {
+      id = parseInt(id, 10);
     }
-    id++;
+    id ++;
 
     const height = this.randomIntFromInterval(200, 400);
     const width = this.randomIntFromInterval(400, 800);
@@ -141,7 +134,7 @@ export class DesktopComponent implements OnInit {
         }
       }
     }
-
+    return {left: 100, top: 100};
   }
 
   randomIntFromInterval(min, max) {
