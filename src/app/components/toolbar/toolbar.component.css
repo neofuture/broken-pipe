@@ -1,11 +1,11 @@
 .closed, .new {
   opacity:0;
-  transition: all 200ms;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 }
 
 .open {
   opacity:1;
-  transition: all 200ms;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 }
 
 .tabItem {
@@ -20,7 +20,6 @@
   max-width:130px;
   white-space: nowrap;
   line-height: 20px;
-  font-size: 14px;
 }
 
 .active {

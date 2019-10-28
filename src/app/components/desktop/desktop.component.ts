@@ -173,30 +173,19 @@ export class DesktopComponent implements OnInit {
 
   makeWindowActive(windowItem: WindowModel) {
     this.zIndex++;
+    // tslint:disable-next-line:forin
     for (const key in this.windowList) {
-      if (this.windowList[key] === windowItem) {
-
-        this.windowList[key].state.active = true;
-        this.windowList[key].zIndex = this.zIndex;
-        this.windowList[key].class = 'open active' +
-          (this.windowList[key].state.isMaximised ? ' maximised' : '') +
-          (this.windowList[key].state.isMinimised ? ' minimised' : '');
-      } else {
-        this.windowList[key].state.active = false;
-        this.windowList[key].class = 'open' +
-          (this.windowList[key].state.isMaximised ? ' maximised' : '') +
-          (this.windowList[key].state.isMinimised ? ' minimised' : '');
-      }
+      this.windowList[key].state.active = true;
+      this.windowList[key].zIndex = this.zIndex;
+      this.windowList[key].class = 'open ' +
+        (this.windowList[key].state.isMaximised ? ' maximised' : '') +
+        (this.windowList[key].state.isMinimised ? ' minimised' : '');
     }
-  }
 
-  maximiseWindow(windowItem: WindowModel) {
+    windowItem.state.active = false;
+    windowItem.class = 'open active' +
+      (windowItem.state.isMaximised ? ' maximised' : '') +
+      (windowItem.state.isMinimised ? ' minimised' : '');
 
-    console.log(this.windowList);
-  }
-
-  minimiseWindow(windowItem: WindowModel) {
-
-    console.log(this.windowList);
   }
 }

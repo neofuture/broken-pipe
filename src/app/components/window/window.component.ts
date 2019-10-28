@@ -17,8 +17,6 @@ export class WindowComponent implements OnInit {
   @Input() zIndex;
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
-  @Output() maximise = new EventEmitter<boolean>();
-  @Output() minimise = new EventEmitter<boolean>();
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
@@ -210,30 +208,27 @@ export class WindowComponent implements OnInit {
 
   makeWindowActive(windowItem: WindowModel) {
     this.zIndex++;
+    // tslint:disable-next-line:forin
     for (const key in this.windowList) {
-      if (this.windowList[key] === windowItem) {
-        this.windowList[key].active = true;
-        this.windowList[key].zIndex = this.zIndex;
-        this.windowList[key].class = 'open active';
-      } else {
-        this.windowList[key].active = false;
-        this.windowList[key].class = 'open';
-      }
+      this.windowList[key].state.active = true;
+      this.windowList[key].zIndex = this.zIndex;
+      this.windowList[key].class = 'open ' +
+        (this.windowList[key].state.isMaximised ? ' maximised' : '') +
+        (this.windowList[key].state.isMinimised ? ' minimised' : '');
     }
+
+    windowItem.state.active = false;
+    windowItem.class = 'open active' +
+      (windowItem.state.isMaximised ? ' maximised' : '') +
+      (windowItem.state.isMinimised ? ' minimised' : '');
+
   }
 
   maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
     windowItem.state.isMaximised = !windowItem.state.isMaximised;
-
-    // @ts-ignore
-    this.maximise.emit(windowItem);
-
   }
 
   minimiseWindow($event: MouseEvent, windowItem: WindowModel) {
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
-    // @ts-ignore
-    this.minimise.emit(windowItem);
-
   }
 }

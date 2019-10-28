@@ -1,15 +1,13 @@
 .closed, .new {
   opacity:0;
-  transition: all 200ms;
+  transition: opacity 200ms, width 200ms, height, 200ms;
   padding:0;
-  font-size:0;
   height:0;
 }
 
 .open {
   opacity:1;
-  transition: all 200ms;
-  font-size:14px;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 }
 
 .windowItem {
@@ -37,7 +35,7 @@
 .active .titlebar {
   background-color:#379;
   color:white;
-  transition: all 0.3s;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 }
 .active {
   background-color: white;
@@ -54,14 +52,14 @@ button {
   float: right;
   cursor:pointer;
   position:relative;
-  transition: all 0.3s;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 
 }
 
 .active button {
   color: #379;
   background-color:white;
-  transition: all 0.3s;
+  transition: opacity 200ms, width 200ms, height, 200ms;
 
 }
 
