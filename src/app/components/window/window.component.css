@@ -43,7 +43,7 @@
 }
 button {
   border: none;
-  background-color: #379;
+  background-color: #438eb5;
   border-radius: 50%;
   min-width: 20px;
   min-height: 20px;
@@ -57,8 +57,8 @@ button {
 }
 
 .active button {
-  color: #379;
-  background-color:white;
+  /*color: #379;*/
+  /*background-color:white;*/
   transition: opacity 200ms, width 200ms, height, 200ms;
 
 }
