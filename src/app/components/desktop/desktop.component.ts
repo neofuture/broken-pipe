@@ -10,14 +10,11 @@ export class DesktopComponent implements OnInit {
 
   windowList = {};
   objectKeys = Object.keys;
-  top = 100;
-  left = 10;
-  width = 600;
-  height = 200;
-  active = false;
+  top = 100; // calculate the title bar height TODO
+  left: number;
   zIndex = 1;
   innerWidth: number;
-  innerHeight: number;
+  innerHeight: number; // minus taskbar height again TODO
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -35,11 +32,11 @@ export class DesktopComponent implements OnInit {
   }
 
   buildWindows() {
-    this.addWindow('Init test window');
-    this.addWindow('Init test window');
-    this.addWindow('Init test window');
-    this.addWindow('Init test window');
-    this.addWindow('Init test window');
+    this.addWindow('Init test window A');
+    this.addWindow('Init test window B');
+    this.addWindow('Init test window C');
+    this.addWindow('Init test window D');
+    this.addWindow('Init test window E');
   }
 
   onClose(windowItem: WindowModel) {
@@ -59,7 +56,12 @@ export class DesktopComponent implements OnInit {
         lastWindow = this.windowList[key];
       }
     }
-    this.makeWindowActive(lastWindow);
+
+    if (typeof lastWindow !== 'undefined') {
+      if (lastWindow.class !== 'closed') {
+        this.makeWindowActive(lastWindow);
+      }
+    }
   }
 
   logIt() {
@@ -87,11 +89,11 @@ export class DesktopComponent implements OnInit {
       body: 'testing',
       class: 'new',
       zIndex: this.zIndex,
-      active: this.active,
+      active: false,
       top: position.top,
       left: position.left,
-      width,
       height,
+      width,
       close: false,
       closed: false
     };
@@ -112,8 +114,8 @@ export class DesktopComponent implements OnInit {
     for (let left = 0; (left + width) < this.innerWidth; left += grid) {
       for (let top = 100; (top + height) < this.innerHeight; top += grid) {
 
-        if (!this.isWindowAtPosition(left, top)) {
-          return {left, top};
+        if (!this.isWindowAtPosition(top, left)) {
+          return {top, left};
         }
 
         if (left + grid + width > this.innerWidth) {
@@ -132,9 +134,9 @@ export class DesktopComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  isWindowAtPosition(left, top) {
+  isWindowAtPosition(top, left) {
     for (const item in this.windowList) {
-      if (this.windowList[item].left === left && this.windowList[item].top === top) {
+      if (this.windowList[item].top === top && this.windowList[item].left === left) {
         return true;
       }
     }
@@ -157,7 +159,7 @@ export class DesktopComponent implements OnInit {
 
   makeWindowActive(windowItem: WindowModel) {
     // event.stopPropagation();
-    this.zIndex ++;
+    this.zIndex++;
     // tslint:disable-next-line:forin
     for (const key in this.windowList) {
       if (this.windowList[key] === windowItem) {
@@ -167,7 +169,6 @@ export class DesktopComponent implements OnInit {
       } else {
         this.windowList[key].active = false;
         this.windowList[key].class = 'open';
-
       }
     }
   }
