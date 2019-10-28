@@ -5,6 +5,7 @@
   width:100%;
   background-color:#337799;
   left:0;
+  border-top:1px solid #2d688a;
 }
 .windowItem {
   position:absolute;
