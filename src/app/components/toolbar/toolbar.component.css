@@ -19,6 +19,8 @@
   text-overflow: ellipsis;
   max-width:130px;
   white-space: nowrap;
+  line-height: 20px;
+  font-size: 14px;
 }
 
 .active {

@@ -14,8 +14,7 @@ export class WindowComponent implements OnInit {
   @Input() windowItem: WindowModel;
   @Input() windowList;
   @Input() zIndex;
-  // tslint:disable-next-line:no-output-native
-  @Output() close = new EventEmitter<boolean>();
+  @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
   resizeWindowItem: any = null;
 
@@ -45,9 +44,9 @@ export class WindowComponent implements OnInit {
 
   closeWindow(event, windowItem: WindowModel) {
     event.stopPropagation();
-    windowItem.close = true;
+    windowItem.closing = true;
     // @ts-ignore
-    this.close.emit(windowItem);
+    this.closing.emit(windowItem);
   }
 
   closedWindow(windowItem) {
@@ -206,4 +205,11 @@ export class WindowComponent implements OnInit {
     }
   }
 
+  maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
+    windowItem.state.isMaximised = !windowItem.state.isMaximised;
+  }
+
+  minimiseWindow($event: MouseEvent, windowItem: WindowModel) {
+    windowItem.state.isMinimised = !windowItem.state.isMinimised;
+  }
 }

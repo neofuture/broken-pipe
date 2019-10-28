@@ -8,7 +8,7 @@
     <app-window [windowItem]="windowList[windowItem]"
                 [windowList]="windowList"
                 [zIndex]="zIndex"
-                (close)="onClose(windowList[windowItem])"
+                (closing)="onClose(windowList[windowItem])"
                 (closed)="onClosed(windowList[windowItem])"
                 (click)="makeWindowActive(windowList[windowItem])">
     </app-window>

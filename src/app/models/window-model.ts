@@ -13,7 +13,7 @@ export interface WindowModel {
   maximizable: boolean;
   minimizable: boolean;
   resizable: boolean;
-  close: boolean;
+  closing: boolean;
   state: {
     active: boolean;
     isMinimised: boolean;

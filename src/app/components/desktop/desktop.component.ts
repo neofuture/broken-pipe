@@ -102,7 +102,7 @@ export class DesktopComponent implements OnInit {
       maximizable: true,
       minimizable: true,
       resizable: true,
-      close:false,
+      closing: false,
       entities: {},
       state: {
         active: true,
