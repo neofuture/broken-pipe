@@ -1,0 +1,28 @@
+.closed, .new {
+  opacity:0;
+  transition: all 200ms;
+}
+
+.open {
+  opacity:1;
+  transition: all 200ms;
+}
+
+.tabItem {
+  width:130px;
+  display:inline-block;
+  padding:4px;
+  margin:4px;
+  border:1px solid #e0dfe1;
+  border-radius:4px;
+  background-color: #f0f2f6;
+  cursor: pointer;
+}
+
+.active {
+  color:white;
+  border:1px solid #2d688a;
+
+  background-color: #41a8d0;
+
+}

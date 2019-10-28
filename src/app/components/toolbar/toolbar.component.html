@@ -1,1 +1,3 @@
-<p>toolbar works!</p>
+<span *ngFor="let windowItem of objectKeys(windowList)" [ngClass]="['tabItem',  windowList[windowItem].class]" (click)="makeWindowActive(windowList[windowItem])">
+  {{ windowList[windowItem].titleBar}}
+</span>

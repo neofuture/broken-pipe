@@ -1,0 +1,14 @@
+.toolbar {
+  display:block;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background-color:#337799;
+  left:0;
+}
+.windowItem {
+  position:absolute;
+}
+.active {
+  color:red;
+}

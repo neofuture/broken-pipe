@@ -17,13 +17,15 @@ export class WindowComponent implements OnInit {
   ngOnInit() {
   }
 
-  closeWindow(windowItem) {
+  closeWindow(event, windowItem: WindowModel) {
+    event.stopPropagation();
     windowItem.close = true;
+    // @ts-ignore
     this.close.emit(windowItem);
   }
 
   closedWindow(windowItem) {
-    if (windowItem.close) {
+    if (windowItem.class === 'closed') {
       this.closed.emit(windowItem);
     }
   }

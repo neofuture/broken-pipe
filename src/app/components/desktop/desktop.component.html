@@ -1,12 +1,22 @@
 <app-titlebar></app-titlebar>
 <button (click)="addWindow('Button test window')">Add Window</button>
 <button (click)="logIt()">Log Windows</button>
-<div *ngFor="let windowItem of objectKeys(windowList)">
+<button (click)="closeWindowById(3)">Close Window 3</button>
+<button (click)="closeAllWindows()">Close All Windows</button>
+
+<div *ngFor="let windowItem of objectKeys(windowList)" class="windowItem" [ngStyle]="{
+top: windowList[windowItem].top + 'px',
+left: windowList[windowItem].left + 'px',
+width: windowList[windowItem].width + 'px',
+height: windowList[windowItem].height + 'px',
+zIndex: windowList[windowItem].zIndex
+}">
   <app-window [windowItem]="windowList[windowItem]"
               (close)="onClose(windowList[windowItem])"
-              (closed)="onClosed(windowList[windowItem])">
+              (closed)="onClosed(windowList[windowItem])"
+              (click)="makeWindowActive(windowList[windowItem])">
   </app-window>
 </div>
-<app-toolbar></app-toolbar>
+<app-toolbar [windowList]="windowList" class="toolbar" [zIndex]="zIndex"></app-toolbar>
 
 

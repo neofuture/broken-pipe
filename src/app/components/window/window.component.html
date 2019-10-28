@@ -1,5 +1,8 @@
-<div [ngClass]="windowItem.class"
-     (transitionend)="closedWindow(windowItem)">
-  {{ windowItem.titleBar }}
-  <button (click)="closeWindow(windowItem)">X</button>
+<div [ngClass]="['windowItem',  windowItem.class]"
+     (transitionend)="closedWindow(windowItem)" class="windowItem">
+  <div>{{ windowItem.titleBar }}
+  <button (click)="closeWindow($event, windowItem)">X</button>
+  </div>
+  <div>{{ windowItem.body }}</div>
 </div>
+
