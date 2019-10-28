@@ -14,7 +14,7 @@ export class DesktopComponent implements OnInit {
   left: number;
   zIndex = 1;
   innerWidth: number;
-  innerHeight: number; // minus taskbar height again TODO
+  innerHeight: number; // minus tabbar height again TODO
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -150,17 +150,15 @@ export class DesktopComponent implements OnInit {
   }
 
   closeAllWindows() {
-    // tslint:disable-next-line:forin
     for (const key in this.windowList) {
-      this.windowList[key].class = 'closed';
-
+      if (typeof this.windowList[key] !== 'undefined') {
+        this.windowList[key].class = 'closed';
+      }
     }
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    // event.stopPropagation();
     this.zIndex++;
-    // tslint:disable-next-line:forin
     for (const key in this.windowList) {
       if (this.windowList[key] === windowItem) {
         this.windowList[key].active = true;
