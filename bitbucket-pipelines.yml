@@ -14,5 +14,9 @@ pipelines:
           - npm install 
           - npm install -g @angular/cli@next
           - ng build --prod
-          - echo "$(ls -la dist/)"
-          - scp -r dist/ ng@ng.owuk.co.uk
+          - pipe: atlassian/ftp-deploy:0.2.1
+            variables:
+              USER: ng
+              PASSWORD: Yoshi355466!
+              SERVER: ng.owuk.co.uk
+              REMOTE_PATH: /
