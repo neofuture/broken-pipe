@@ -49,16 +49,20 @@ export class DesktopComponent implements OnInit {
 
   onClosed(windowItem: WindowModel) {
     let lastWindow: WindowModel;
+    let windowActive = false;
     for (const key in this.windowList) {
       if (windowItem === this.windowList[key]) {
         delete this.windowList[key];
       } else {
         lastWindow = this.windowList[key];
+        if (lastWindow.state.active) {
+          windowActive = true;
+        }
       }
     }
 
     if (typeof lastWindow !== 'undefined') {
-      if (lastWindow.class !== 'closed') {
+      if (lastWindow.class !== 'closed' && !windowActive) {
         this.makeWindowActive(lastWindow);
       }
     }
@@ -87,15 +91,24 @@ export class DesktopComponent implements OnInit {
     windowItem = {
       titleBar: title + ' ' + id,
       body: 'testing',
-      class: 'new',
+      class: 'new active',
       zIndex: this.zIndex,
-      active: false,
       top: position.top,
       left: position.left,
       height,
       width,
-      close: false,
-      closed: false
+      minimumWidth: 300,
+      minimumHeight: 200,
+      maximizable: true,
+      minimizable: true,
+      resizable: true,
+      close:false,
+      entities: {},
+      state: {
+        active: true,
+        isMinimised: false,
+        isMaximised: false
+      }
     };
 
     this.windowList[id] = windowItem;
@@ -161,11 +174,11 @@ export class DesktopComponent implements OnInit {
     this.zIndex++;
     for (const key in this.windowList) {
       if (this.windowList[key] === windowItem) {
-        this.windowList[key].active = true;
+        this.windowList[key].state.active = true;
         this.windowList[key].zIndex = this.zIndex;
         this.windowList[key].class = 'open active';
       } else {
-        this.windowList[key].active = false;
+        this.windowList[key].state.active = false;
         this.windowList[key].class = 'open';
       }
     }

@@ -9,13 +9,16 @@
 }
 
 .tabItem {
-  width:130px;
   display:inline-block;
   padding:4px;
   margin:4px;
   border-radius:4px;
   background-color: #f0f2f6;
   cursor: pointer;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  max-width:130px;
+  white-space: nowrap;
 }
 
 .active {

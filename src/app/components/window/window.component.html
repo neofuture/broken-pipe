@@ -1,5 +1,16 @@
 <div [ngClass]="['windowItem',  windowItem.class]"
-     (transitionend)="closedWindow(windowItem)" class="windowItem">
+     (transitionend)="closedWindow(windowItem)"
+     (mousemove)="resizeCursorSet($event)"
+     (mouseout)="resizeCursorRestore()"
+     (mousedown)="resizeDragStart($event, windowItem)"
+     [ngStyle]="{
+                  top: windowItem.top + 'px',
+                  left: windowItem.left + 'px',
+                  width: windowItem.width + 'px',
+                  height: windowItem.height + 'px',
+                  zIndex: windowItem.zIndex
+                 }"
+>
   <div>{{ windowItem.titleBar }}
   <button (click)="closeWindow($event, windowItem)">X</button>
   </div>

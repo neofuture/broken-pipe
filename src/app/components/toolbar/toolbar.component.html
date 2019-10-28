@@ -1,3 +1,6 @@
-<span *ngFor="let windowItem of objectKeys(windowList)" [ngClass]="['tabItem',  windowList[windowItem].class]" (click)="makeWindowActive(windowList[windowItem])">
+<span *ngFor="let windowItem of objectKeys(windowList)"
+      [ngClass]="['tabItem',  windowList[windowItem].class]"
+      [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 16px)'}"
+      (click)="makeWindowActive(windowList[windowItem])">
   {{ windowList[windowItem].titleBar}}
 </span>

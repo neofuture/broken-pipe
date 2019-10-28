@@ -1,22 +1,20 @@
-<app-titlebar></app-titlebar>
-<button (click)="addWindow('Button test window')">Add Window</button>
-<button (click)="logIt()">Log Windows</button>
-<button (click)="closeWindowById(3)">Close Window 3</button>
-<button (click)="closeAllWindows()">Close All Windows</button>
-
-<div *ngFor="let windowItem of objectKeys(windowList)" class="windowItem" [ngStyle]="{
-top: windowList[windowItem].top + 'px',
-left: windowList[windowItem].left + 'px',
-width: windowList[windowItem].width + 'px',
-height: windowList[windowItem].height + 'px',
-zIndex: windowList[windowItem].zIndex
-}">
-  <app-window [windowItem]="windowList[windowItem]"
-              (close)="onClose(windowList[windowItem])"
-              (closed)="onClosed(windowList[windowItem])"
-              (click)="makeWindowActive(windowList[windowItem])">
-  </app-window>
+<app-titlebar class="titlebar"></app-titlebar>
+<div class="desktop" [ngStyle]="{height: (innerHeight - 72) + 'px'}">
+  <button (click)="addWindow('Button test window')">Add Window</button>
+  <button (click)="logIt()">Log Windows</button>
+  <button (click)="closeWindowById(3)">Close Window 3</button>
+  <button (click)="closeAllWindows()">Close All Windows</button>
+  <div *ngFor="let windowItem of objectKeys(windowList)">
+    <app-window [windowItem]="windowList[windowItem]"
+                [windowList]="windowList"
+                [zIndex]="zIndex"
+                (close)="onClose(windowList[windowItem])"
+                (closed)="onClosed(windowList[windowItem])"
+                (click)="makeWindowActive(windowList[windowItem])">
+    </app-window>
+  </div>
 </div>
+
 <app-toolbar [windowList]="windowList" class="toolbar" [zIndex]="zIndex"></app-toolbar>
 
 

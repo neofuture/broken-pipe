@@ -20,6 +20,7 @@
   padding:4px;
   border-radius:4px;
   border-top-right-radius:13px;
+  position:absolute;
 }
 .active {
   background-color: white;
@@ -35,4 +36,8 @@ button {
   padding: 0;
   float: right;
   cursor:pointer;
+}
+
+.noTransition {
+  transition: all 0s;
 }
