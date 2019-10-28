@@ -10,13 +10,15 @@ export class WindowComponent implements OnInit {
   resizeDirection: any;
   innerWidth: number;
   innerHeight: number;
+  resizeWindowItem: any = null;
 
   @Input() windowItem: WindowModel;
   @Input() windowList;
   @Input() zIndex;
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
-  resizeWindowItem: any = null;
+  @Output() maximise = new EventEmitter<boolean>();
+  @Output() minimise = new EventEmitter<boolean>();
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
@@ -56,10 +58,19 @@ export class WindowComponent implements OnInit {
   }
 
   resizeCursorSet(event: MouseEvent) {
-    if (this.resizeWindowItem === null) {
+
+
+    // @ts-ignore
+    if (!event.target.classList.contains('windowItem')) {
+      return false;
+    }
+
+    if (
+      this.resizeWindowItem === null
+    ) {
       const xOff = event.offsetX;
       const yOff = event.offsetY;
-      const resizeCornerSize = 15;
+      const resizeCornerSize = 100;
       this.resizeDirection = '';
 
       if (yOff <= resizeCornerSize) {
@@ -83,6 +94,8 @@ export class WindowComponent implements OnInit {
       }
 
       document.body.style.cursor = this.resizeDirection + '-resize';
+    } else {
+      this.resizeCursorRestore();
     }
   }
 
@@ -91,6 +104,10 @@ export class WindowComponent implements OnInit {
   }
 
   resizeDragStart(event: MouseEvent, windowItem: WindowModel) {
+    // @ts-ignore
+    if (!event.target.classList.contains('windowItem')) {
+      return false;
+    }
     this.resizeWindowItem = windowItem;
 
     this.resizeWindowItem.entities.xPosition = event.x || event.pageX;
@@ -207,9 +224,16 @@ export class WindowComponent implements OnInit {
 
   maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
     windowItem.state.isMaximised = !windowItem.state.isMaximised;
+
+    // @ts-ignore
+    this.maximise.emit(windowItem);
+
   }
 
   minimiseWindow($event: MouseEvent, windowItem: WindowModel) {
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
+    // @ts-ignore
+    this.minimise.emit(windowItem);
+
   }
 }

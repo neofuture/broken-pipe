@@ -10,7 +10,9 @@
                 [zIndex]="zIndex"
                 (closing)="onClose(windowList[windowItem])"
                 (closed)="onClosed(windowList[windowItem])"
-                (click)="makeWindowActive(windowList[windowItem])">
+                (click)="makeWindowActive(windowList[windowItem])"
+                (maximise)="maximiseWindow(windowList[windowItem])"
+                (minimise)="minimiseWindow(windowList[windowItem])">
     </app-window>
   </div>
 </div>

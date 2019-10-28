@@ -18,6 +18,6 @@
   <button *ngIf="!windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">_</button>
   <button *ngIf="windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">&#9651;</button>
   </div>
-  <div>{{ windowItem.body }}</div>
+  <div class="clientArea">{{ windowItem.body }}</div>
 </div>
 
