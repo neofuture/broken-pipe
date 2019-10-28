@@ -88,9 +88,7 @@ export class WindowComponent implements OnInit {
   }
 
   resizeCursorRestore() {
-    if (this.resizeWindowItem !== null) {
-      document.body.style.cursor = '';
-    }
+    document.body.style.cursor = '';
   }
 
   resizeDragStart(event: MouseEvent, windowItem: WindowModel) {
