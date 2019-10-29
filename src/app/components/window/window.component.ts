@@ -169,12 +169,12 @@ export class WindowComponent implements OnInit {
 
       let w = this.resizeWindowItem.entities.oldWidth + dx;
       let h = this.resizeWindowItem.entities.oldHeight + dy;
-      if (w <= this.resizeWindowItem.entities.minimumWidth) {
-        w = this.resizeWindowItem.entities.minimumWidth;
+      if (w <= this.resizeWindowItem.minimumWidth) {
+        w = this.resizeWindowItem.minimumWidth;
         dx = w - this.resizeWindowItem.entities.oldWidth;
       }
-      if (h <= this.resizeWindowItem.entities.minimumHeight) {
-        h = this.resizeWindowItem.entities.minimumHeight;
+      if (h <= this.resizeWindowItem.minimumHeight) {
+        h = this.resizeWindowItem.minimumHeight;
         dy = h - this.resizeWindowItem.entities.oldHeight;
       }
 
