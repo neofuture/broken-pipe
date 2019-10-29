@@ -11,6 +11,7 @@ export class WindowComponent implements OnInit {
   innerWidth: number;
   innerHeight: number;
   resizeWindowItem: any = null;
+  dragWindowItem: any = null;
 
   @Input() windowItem: WindowModel;
   @Input() windowList;
@@ -20,12 +21,22 @@ export class WindowComponent implements OnInit {
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
-    this.resizeDragGo(event);
+    if (this.resizeWindowItem !== null) {
+      this.resizeDragGo(event);
+    }
+    if (this.dragWindowItem !== null) {
+      this.dragGo(event);
+    }
   }
 
   @HostListener('document:mouseup', ['$event'])
   onMouseUp(event) {
-    this.resizeDragStop(event);
+    if (this.resizeWindowItem !== null) {
+      this.resizeDragStop(event);
+    }
+    if (this.dragWindowItem !== null) {
+      this.dragStop(event);
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -56,8 +67,6 @@ export class WindowComponent implements OnInit {
   }
 
   resizeCursorSet(event: MouseEvent) {
-
-
     // @ts-ignore
     if (!event.target.classList.contains('windowItem')) {
       return false;
@@ -141,20 +150,20 @@ export class WindowComponent implements OnInit {
       let x = event.pageX;
       let y = event.pageY;
 
-      if (x <= 3) {
-        x = 3;
+      if (x <= 5) {
+        x = 5;
       }
 
-      if (x >= this.innerWidth - 3) {
-        x = this.innerWidth - 3;
+      if (x >= this.innerWidth - 5) {
+        x = this.innerWidth - 5;
       }
 
-      if (y <= 0) {
-        y = 0;
+      if (y <= 40) {
+        y = 40;
       }
 
-      if (y >= this.innerHeight - 3) {
-        y = this.innerHeight - 3;
+      if (y >= this.innerHeight - 42) {
+        y = this.innerHeight - 42;
       }
 
       let dx = x - this.resizeWindowItem.entities.xPosition;
@@ -230,5 +239,63 @@ export class WindowComponent implements OnInit {
 
   minimiseWindow($event: MouseEvent, windowItem: WindowModel) {
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
+  }
+
+  dragStart(event: MouseEvent, windowItem: WindowModel) {
+    // @ts-ignore
+    if (!event.target.classList.contains('titlebar')) {
+      return false;
+    }
+    this.dragWindowItem = windowItem;
+    this.makeWindowActive(this.dragWindowItem);
+
+    const x = event.pageX;
+    const y = event.pageY;
+
+    // @ts-ignore
+    this.dragWindowItem.entities.xOffset = event.target.parentNode.offsetLeft - x;
+    // @ts-ignore
+    this.dragWindowItem.entities.yOffset = event.target.parentNode.offsetTop - y;
+    this.dragWindowItem.class = 'open active noTransition';
+
+  }
+
+  dragGo(event) {
+    if (this.dragWindowItem !== null) {
+      // this.makeWindowActive(this.dragWindowItem);
+
+      const x = event.pageX;
+      const y = event.pageY;
+
+      let xOff = (x + this.dragWindowItem.entities.xOffset);
+      let yOff = (y + this.dragWindowItem.entities.yOffset);
+
+      if (yOff <= 2) {
+        yOff = 2;
+      }
+
+      if (yOff > this.innerHeight - 114) {
+        yOff = this.innerHeight - 114;
+      }
+
+      if (xOff + this.dragWindowItem.width - 60 < 0) {
+        xOff = 0 - this.dragWindowItem.width + 60;
+      }
+
+      if (xOff + 35 > this.innerWidth) {
+        xOff = this.innerWidth - 35;
+      }
+
+      this.dragWindowItem.left = xOff;
+      this.dragWindowItem.top = yOff;
+
+    }
+  }
+
+  dragStop(event) {
+    if (this.dragWindowItem !== null) {
+      this.dragWindowItem.entities = {};
+      this.dragWindowItem = null;
+    }
   }
 }

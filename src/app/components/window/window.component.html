@@ -11,7 +11,7 @@
                   zIndex: windowItem.zIndex
                  }"
 >
-  <div class="titlebar">{{ windowItem.titleBar }}
+  <div class="titlebar" (mousedown)="dragStart($event, windowItem)">{{ windowItem.titleBar }}
   <button (click)="closeWindow($event, windowItem)">&#10005;</button>
   <button *ngIf="!windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">&#9634;</button>
     <button *ngIf="windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)"><span>&#9723;</span><span>&#9723;</span></button>

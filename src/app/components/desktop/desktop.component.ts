@@ -34,10 +34,6 @@ export class DesktopComponent implements OnInit {
 
   buildWindows() {
     this.addWindow('Init test window A');
-    this.addWindow('Init test window B');
-    this.addWindow('Init test window C');
-    this.addWindow('Init test window D');
-    this.addWindow('Init test window E');
   }
 
   onClose(windowItem: WindowModel) {
