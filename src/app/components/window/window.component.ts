@@ -263,16 +263,14 @@ export class WindowComponent implements OnInit {
 
   dragGo(event) {
     if (this.dragWindowItem !== null) {
-      // this.makeWindowActive(this.dragWindowItem);
-
       const x = event.pageX;
       const y = event.pageY;
 
       let xOff = (x + this.dragWindowItem.entities.xOffset);
       let yOff = (y + this.dragWindowItem.entities.yOffset);
 
-      if (yOff <= 2) {
-        yOff = 2;
+      if (yOff <= 1) {
+        yOff = 1;
       }
 
       if (yOff > this.innerHeight - 120) {
