@@ -10,11 +10,10 @@
   <div *ngFor="let windowItem of objectKeys(windowList)">
     <app-window [windowItem]="windowList[windowItem]"
                 [windowList]="windowList"
-                [zIndex]="zIndex"
                 (closing)="onClose(windowList[windowItem])"
                 (closed)="onClosed(windowList[windowItem])"
                 (click)="makeWindowActive(windowList[windowItem])">
     </app-window>
   </div>
 </div>
-<app-toolbar [windowList]="windowList" class="toolbar" [zIndex]="zIndex"></app-toolbar>
+<app-toolbar [windowList]="windowList" class="toolbar"></app-toolbar>

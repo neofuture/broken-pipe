@@ -13,7 +13,6 @@ export class DesktopComponent implements OnInit {
   objectKeys = Object.keys;
   top = 100; // calculate the title bar height TODO
   left: number;
-  zIndex = 1;
   innerWidth: number;
   innerHeight: number; // minus tabbar height again TODO
 
@@ -34,6 +33,10 @@ export class DesktopComponent implements OnInit {
 
   buildWindows() {
     this.addWindow('Init test window A');
+    this.addWindow('Init test window B');
+    this.addWindow('Init test window C');
+    this.addWindow('Init test window D');
+    this.addWindow('Init test window E');
   }
 
   onClose(windowItem: WindowModel) {
@@ -76,13 +79,19 @@ export class DesktopComponent implements OnInit {
     const width = this.randomIntFromInterval(400, 800);
 
     const position = this.findXYPosition(height, width);
-
+    let zIndex = 0;
+    // tslint:disable-next-line:forin
+    for (const key in this.windowList) {
+      if (this.windowList[key].zIndex > zIndex) {
+        zIndex = this.windowList[key].zIndex;
+      }
+    }
     let windowItem: WindowModel;
     windowItem = {
       titleBar: title + ' ' + id,
       body: 'testing',
       class: 'new active',
-      zIndex: this.zIndex,
+      zIndex,
       top: position.top,
       left: position.left,
       height,
@@ -106,8 +115,6 @@ export class DesktopComponent implements OnInit {
       this.windowList[id].class = 'open';
       this.makeWindowActive(windowItem);
     });
-
-    this.zIndex += 1;
   }
 
   findXYPosition(height, width) {
@@ -161,20 +168,22 @@ export class DesktopComponent implements OnInit {
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    this.zIndex++;
+    let zIndex = 0;
     // tslint:disable-next-line:forin
     for (const key in this.windowList) {
+      if (this.windowList[key].zIndex > zIndex) {
+        zIndex = this.windowList[key].zIndex;
+      }
       this.windowList[key].state.active = false;
       this.windowList[key].class = 'open ' +
         (this.windowList[key].state.isMaximised ? ' maximised' : '') +
         (this.windowList[key].state.isMinimised ? ' minimised' : '');
     }
-
-    windowItem.zIndex = this.zIndex;
+    zIndex++;
+    windowItem.zIndex = zIndex;
     windowItem.state.active = true;
     windowItem.class = 'open active' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');
-
   }
 }

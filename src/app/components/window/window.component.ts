@@ -15,7 +15,6 @@ export class WindowComponent implements OnInit {
 
   @Input() windowItem: WindowModel;
   @Input() windowList;
-  @Input() zIndex;
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
 
@@ -158,12 +157,12 @@ export class WindowComponent implements OnInit {
         x = this.innerWidth - 5;
       }
 
-      if (y <= 40) {
-        y = 40;
+      if (y <= 46) {
+        y = 46;
       }
 
-      if (y >= this.innerHeight - 42) {
-        y = this.innerHeight - 42;
+      if (y >= this.innerHeight - 52) {
+        y = this.innerHeight - 52;
       }
 
       let dx = x - this.resizeWindowItem.entities.xPosition;
@@ -216,21 +215,23 @@ export class WindowComponent implements OnInit {
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    this.zIndex++;
+    let zIndex = 0;
     // tslint:disable-next-line:forin
     for (const key in this.windowList) {
+      if(this.windowList[key].zIndex > zIndex) {
+        zIndex = this.windowList[key].zIndex;
+      }
       this.windowList[key].state.active = false;
       this.windowList[key].class = 'open ' +
         (this.windowList[key].state.isMaximised ? ' maximised' : '') +
         (this.windowList[key].state.isMinimised ? ' minimised' : '');
     }
-
-    windowItem.zIndex = this.zIndex;
+    zIndex++;
+    windowItem.zIndex = zIndex;
     windowItem.state.active = true;
     windowItem.class = 'open active' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');
-
   }
 
   maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
@@ -274,8 +275,8 @@ export class WindowComponent implements OnInit {
         yOff = 2;
       }
 
-      if (yOff > this.innerHeight - 114) {
-        yOff = this.innerHeight - 114;
+      if (yOff > this.innerHeight - 120) {
+        yOff = this.innerHeight - 120;
       }
 
       if (xOff + this.dragWindowItem.width - 60 < 0) {

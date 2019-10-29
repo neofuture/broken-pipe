@@ -36,6 +36,7 @@
   border-top-right-radius:11px;
   transition: all 0.3s;
   line-height:23px;
+  cursor: move;
 }
 .active .titlebar {
   background-color:#379;

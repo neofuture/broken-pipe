@@ -12,11 +12,18 @@
                  }"
 >
   <div class="titlebar" (mousedown)="dragStart($event, windowItem)">{{ windowItem.titleBar }}
-  <button (click)="closeWindow($event, windowItem)">&#10005;</button>
-  <button *ngIf="!windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">&#9634;</button>
-    <button *ngIf="windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)"><span>&#9723;</span><span>&#9723;</span></button>
-  <button *ngIf="!windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">_</button>
-  <button *ngIf="windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">&#9651;</button>
+    <button (click)="closeWindow($event, windowItem)">&#10005;</button>
+    <button *ngIf="!windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">
+      &#9634;
+    </button>
+    <button *ngIf="windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">
+      <span>&#9723;</span><span>&#9723;</span></button>
+    <button *ngIf="!windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">
+      _
+    </button>
+    <button *ngIf="windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">
+      &#9651;
+    </button>
   </div>
   <div class="clientArea">{{ windowItem.body }}</div>
 </div>

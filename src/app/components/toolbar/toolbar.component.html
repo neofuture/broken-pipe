@@ -1,6 +1,13 @@
 <span *ngFor="let windowItem of objectKeys(windowList)"
       [ngClass]="['tabItem',  windowList[windowItem].class]"
       [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 16px)'}"
-      (click)="makeWindowActive(windowList[windowItem])">
-  {{ windowList[windowItem].titleBar}}
+      (click)="makeWindowActive(windowList[windowItem])"
+      (dblclick)="maximiseWindow($event, windowList[windowItem])">
+  <div class="text">{{ windowList[windowItem].titleBar}}</div>
+
+  <button *ngIf="!windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
+      &#9634;
+    </button>
+    <button *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
+      <span>&#9723;</span><span>&#9723;</span></button>
 </span>
