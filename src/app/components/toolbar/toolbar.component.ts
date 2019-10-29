@@ -21,14 +21,14 @@ export class ToolbarComponent implements OnInit {
     this.zIndex++;
     // tslint:disable-next-line:forin
     for (const key in this.windowList) {
-      this.windowList[key].state.active = true;
-      this.windowList[key].zIndex = this.zIndex;
+      this.windowList[key].state.active = false;
       this.windowList[key].class = 'open ' +
         (this.windowList[key].state.isMaximised ? ' maximised' : '') +
         (this.windowList[key].state.isMinimised ? ' minimised' : '');
     }
 
-    windowItem.state.active = false;
+    windowItem.zIndex = this.zIndex;
+    windowItem.state.active = true;
     windowItem.class = 'open active' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');

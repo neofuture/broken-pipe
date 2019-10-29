@@ -104,3 +104,45 @@ button span:last-child {
 .minimised {
   top:100% !important;
 }
+
+
+
+
+/*.windowItem {*/
+/*  border: none;*/
+/*  background-color: rgba(0,0,0,0);*/
+/*  padding:10px;*/
+/*}*/
+
+/*.windowItem.active {*/
+/*  border: none;*/
+/*  background-color: rgba(0,0,0,0);*/
+/*  padding:10px;*/
+/*}*/
+
+/*.maximised {*/
+/*  padding:0;*/
+/*}*/
+
+/*.active {*/
+/*  background-color: transparent;*/
+/*  box-shadow: none;*/
+/*}*/
+/*.titlebar{*/
+/*  border:1px solid #e0dfe1;*/
+/*  border-bottom:none;*/
+/*  margin:0;*/
+/*  width: 100%;*/
+/*  border-radius:0;*/
+/*}*/
+/*.clientArea{*/
+/*  border:1px solid #e0dfe1;*/
+/*  border-top:none;*/
+/*  margin:0;*/
+/*  padding:6px;*/
+/*  border-radius:0;*/
+/*  width:calc(100% - 5px);*/
+/*}*/
+/*button {*/
+/*  border-radius:0;*/
+/*}*/
