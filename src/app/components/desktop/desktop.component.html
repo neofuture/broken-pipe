@@ -1,5 +1,8 @@
 <app-titlebar class="titlebar"></app-titlebar>
 <div class="desktop" [ngStyle]="{height: (innerHeight - 72) + 'px'}">
+  <pre>
+    {{ windowList | json }}
+  </pre>
   <button (click)="addWindow('Button test window')">Add Window</button>
   <button (click)="logIt()">Log Windows</button>
   <button (click)="closeWindowById(3)">Close Window 3</button>
@@ -14,7 +17,6 @@
     </app-window>
   </div>
 </div>
-
 <app-toolbar [windowList]="windowList" class="toolbar" [zIndex]="zIndex"></app-toolbar>
 
 

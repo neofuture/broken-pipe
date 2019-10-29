@@ -7,6 +7,7 @@ import { DesktopComponent } from './components/desktop/desktop.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TitlebarComponent } from './components/titlebar/titlebar.component';
 import { PrettyPrintPipe } from './pipes/pretty-print.pipe';
+import { JsonPipe } from './pipes/json.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PrettyPrintPipe } from './pipes/pretty-print.pipe';
     DesktopComponent,
     ToolbarComponent,
     TitlebarComponent,
-    PrettyPrintPipe
+    PrettyPrintPipe,
+    JsonPipe
   ],
   imports: [
     BrowserModule
