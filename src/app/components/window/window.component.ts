@@ -14,13 +14,12 @@ export class WindowComponent implements OnInit {
 
   resizeWindowItem: any = null;
   dragWindowItem: any = null;
-  windowList: {};
+  windowList: object;
 
   @Input() titleBarTopHeight: number;
   @Input() toolbarHeight: number;
 
   @Input() windowItem: WindowModel;
-  // @Input() windowList;
 
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
@@ -37,7 +36,7 @@ export class WindowComponent implements OnInit {
   }
 
   @HostListener('document:mouseup')
-  onMouseUp(event) {
+  onMouseUp() {
     if (this.resizeWindowItem !== null) {
       this.resizeDragStop();
     }
@@ -48,23 +47,24 @@ export class WindowComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize() {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    this.resize();
   }
 
   constructor(private windowService: WindowService) {
   }
 
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    this.resize();
     this.windowList = this.windowService.windowList;
   }
 
-  closeWindow(event, windowItem: WindowModel) {
+  resize() {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
+  closeWindow(event, windowItem) {
     event.stopPropagation();
     windowItem.closing = true;
-    // @ts-ignore
     this.closing.emit(windowItem);
   }
 
@@ -74,9 +74,9 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  resizeCursorSet(event: MouseEvent) {
+  resizeCursorSet(event, windowItem) {
     // @ts-ignore
-    if (!event.target.classList.contains('windowItem')) {
+    if (!event.target.classList.contains('windowItem') || windowItem.resizable === false) {
       return false;
     }
 
@@ -91,9 +91,7 @@ export class WindowComponent implements OnInit {
       if (yOff <= resizeCornerSize) {
         this.resizeDirection += 'n';
       } else {
-        if (
-          // @ts-ignore
-          yOff >= event.target.offsetHeight - resizeCornerSize) {
+        if (yOff >= event.target.offsetHeight - resizeCornerSize) {
           this.resizeDirection += 's';
         }
       }
@@ -101,9 +99,7 @@ export class WindowComponent implements OnInit {
       if (xOff <= resizeCornerSize) {
         this.resizeDirection += 'w';
       } else {
-        if (
-          // @ts-ignore
-          xOff >= event.target.offsetWidth - resizeCornerSize) {
+        if (xOff >= event.target.offsetWidth - resizeCornerSize) {
           this.resizeDirection += 'e';
         }
       }
@@ -118,8 +114,7 @@ export class WindowComponent implements OnInit {
     document.body.style.cursor = '';
   }
 
-  resizeDragStart(event: MouseEvent, windowItem: WindowModel) {
-    // @ts-ignore
+  resizeDragStart(event, windowItem: WindowModel) {
     if (!event.target.classList.contains('windowItem')) {
       return false;
     }
@@ -129,10 +124,10 @@ export class WindowComponent implements OnInit {
     this.resizeWindowItem.entities.xPosition = event.x || event.pageX;
     this.resizeWindowItem.entities.yPosition = event.y || event.pageY;
 
-    this.resizeWindowItem.entities.oldLeft = parseInt(this.resizeWindowItem.left, 10);
-    this.resizeWindowItem.entities.oldTop = parseInt(this.resizeWindowItem.top, 10);
-    this.resizeWindowItem.entities.oldWidth = parseInt(this.resizeWindowItem.width, 10);
-    this.resizeWindowItem.entities.oldHeight = parseInt(this.resizeWindowItem.height, 10);
+    this.resizeWindowItem.entities.left = parseInt(this.resizeWindowItem.left, 10);
+    this.resizeWindowItem.entities.top = parseInt(this.resizeWindowItem.top, 10);
+    this.resizeWindowItem.entities.width = parseInt(this.resizeWindowItem.width, 10);
+    this.resizeWindowItem.entities.height = parseInt(this.resizeWindowItem.height, 10);
 
   }
 
@@ -185,15 +180,15 @@ export class WindowComponent implements OnInit {
         dy = -dy;
       }
 
-      let w = this.resizeWindowItem.entities.oldWidth + dx;
-      let h = this.resizeWindowItem.entities.oldHeight + dy;
+      let w = this.resizeWindowItem.entities.width + dx;
+      let h = this.resizeWindowItem.entities.height + dy;
       if (w <= this.resizeWindowItem.minimumWidth) {
         w = this.resizeWindowItem.minimumWidth;
-        dx = w - this.resizeWindowItem.entities.oldWidth;
+        dx = w - this.resizeWindowItem.entities.width;
       }
       if (h <= this.resizeWindowItem.minimumHeight) {
         h = this.resizeWindowItem.minimumHeight;
-        dy = h - this.resizeWindowItem.entities.oldHeight;
+        dy = h - this.resizeWindowItem.entities.height;
       }
 
       if (north || east || south || west) {
@@ -208,10 +203,10 @@ export class WindowComponent implements OnInit {
       }
 
       if (west) {
-        this.resizeWindowItem.left = (this.resizeWindowItem.entities.oldLeft - dx);
+        this.resizeWindowItem.left = (this.resizeWindowItem.entities.left - dx);
       }
       if (north) {
-        this.resizeWindowItem.top = (this.resizeWindowItem.entities.oldTop - dy);
+        this.resizeWindowItem.top = (this.resizeWindowItem.entities.top - dy);
       }
     }
   }
@@ -236,9 +231,8 @@ export class WindowComponent implements OnInit {
     this.windowService.minimiseWindow(event, windowItem);
   }
 
-  dragStart(event: MouseEvent, windowItem: WindowModel) {
-    // @ts-ignore
-    if (!event.target.classList.contains('titlebar')) {
+  dragStart(event, windowItem: WindowModel) {
+    if (!event.target.classList.contains('titleBar')) {
       return false;
     }
     this.dragWindowItem = windowItem;
@@ -247,9 +241,7 @@ export class WindowComponent implements OnInit {
     const x = event.pageX;
     const y = event.pageY;
 
-    // @ts-ignore
     this.dragWindowItem.entities.xOffset = event.target.parentNode.offsetLeft - x;
-    // @ts-ignore
     this.dragWindowItem.entities.yOffset = event.target.parentNode.offsetTop - y;
     this.dragWindowItem.class = 'open active noTransition';
 

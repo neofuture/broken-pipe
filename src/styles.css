@@ -25,7 +25,7 @@ body{
   background-color: transparent !important;
   box-shadow: none !important;
 }
-.blocky .titlebar{
+.blocky .titleBar{
   border:1px solid #c8c7c9 !important;
   /*border-bottom:none !important;*/
   margin:0 !important;
@@ -63,6 +63,10 @@ body{
 
 .blocky .tabItem {
   border-radius: 0 !important;
+}
+
+.noTransition * {
+  transition: all 0s !important;
 }
 
 :root {

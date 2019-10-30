@@ -8,7 +8,7 @@ export class WindowService {
   windowList = {};
   constructor() { }
 
-  addWindow(title) {
+  addWindow(hasTitleBar, title, hasTab, resizable) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
     id ++;
 
@@ -37,9 +37,10 @@ export class WindowService {
       minimumHeight: 200,
       maximizable: true,
       minimizable: true,
-      resizable: true,
-      closing: false,
+      resizable,
       entities: {},
+      hasTab,
+      hasTitleBar,
       state: {
         active: true,
         isMinimised: false,
@@ -158,7 +159,9 @@ export class WindowService {
   }
 
   maximiseWindow(windowItem: WindowModel) {
-    windowItem.state.isMaximised = !windowItem.state.isMaximised;
+    if (windowItem.resizable) {
+      windowItem.state.isMaximised = !windowItem.state.isMaximised;
+    }
   }
 
   minimiseWindow(event: MouseEvent, windowItem: WindowModel) {

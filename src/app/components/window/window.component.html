@@ -1,6 +1,6 @@
 <div [ngClass]="['windowItem',  windowItem.class]"
      (transitionend)="closedWindow(windowItem)"
-     (mousemove)="resizeCursorSet($event)"
+     (mousemove)="resizeCursorSet($event, windowItem)"
      (mouseout)="resizeCursorRestore()"
      (mousedown)="resizeDragStart($event, windowItem)"
      [ngStyle]="{
@@ -11,7 +11,7 @@
                   zIndex: windowItem.zIndex
                  }"
 >
-  <div class="titlebar" (mousedown)="dragStart($event, windowItem)">{{ windowItem.titleBar }}
+  <div *ngIf="windowItem.hasTitleBar === true" class="titleBar" (mousedown)="dragStart($event, windowItem)">{{ windowItem.titleBar }}
     <button class="windowButton" (click)="closeWindow($event, windowItem)">&#10005;</button>
     <button class="windowButton" *ngIf="!windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">
       &#9634;
@@ -19,13 +19,13 @@
     <button class="windowButton" *ngIf="windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">
       &#9723;
     </button>
-    <button class="windowButton" *ngIf="!windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">
+    <button class="windowButton" *ngIf="!windowItem.state.isMinimised && windowItem.resizable && windowItem.hasTab" (click)="minimiseWindow($event, windowItem)">
       _
     </button>
-    <button class="windowButton" *ngIf="windowItem.state.isMinimised && windowItem.resizable" (click)="minimiseWindow($event, windowItem)">
+    <button class="windowButton" *ngIf="windowItem.state.isMinimised && windowItem.resizable && windowItem.hasTab" (click)="minimiseWindow($event, windowItem)">
       &#9651;
     </button>
   </div>
-  <div class="clientArea">{{ windowItem.body }}</div>
+  <div class="clientArea" [ngClass]="{'fullHeight': windowItem.hasTitleBar !== true}">{{ windowItem.body }}</div>
 </div>
 

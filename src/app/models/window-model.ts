@@ -1,6 +1,6 @@
 export interface WindowModel {
-  titleBar?: string;
-  class?: string;
+  titleBar: string;
+  class: string;
   body: string;
   zIndex: number;
   top: number;
@@ -13,7 +13,9 @@ export interface WindowModel {
   maximizable: boolean;
   minimizable: boolean;
   resizable: boolean;
-  closing: boolean;
+  closing?: boolean;
+  hasTab: boolean;
+  hasTitleBar: boolean;
   state: {
     active: boolean;
     isMinimised: boolean;

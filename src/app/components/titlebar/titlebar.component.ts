@@ -12,23 +12,23 @@ export class TitleBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.windowService.addWindow('Test Window 1');
-    this.windowService.addWindow('Test Window 2');
-    this.windowService.addWindow('Test Window 3');
-    this.windowService.addWindow('Test Window 4');
-    this.windowService.addWindow('Test Window 5');
+    this.windowService.addWindow(true, 'No Tab', false, true);
+    this.windowService.addWindow(true, 'Not Resizable', true, false);
+    this.windowService.addWindow(false, 'Test Window 3', true, true);
+    this.windowService.addWindow(true, 'Test Window 4', true, true);
+    this.windowService.addWindow(true, 'Test Window 5', true, true);
   }
 
   toggleBlocky() {
-    if (document.body.classList.contains('blocky')) {
-      document.body.classList.remove('blocky');
-    } else {
-      document.body.classList.add('blocky');
-    }
+    document.body.classList.add('noTransition');
+    document.body.classList.contains('blocky') ? document.body.classList.remove('blocky') : document.body.classList.add('blocky');
+    setTimeout(() => {
+      document.body.classList.remove('noTransition');
+    });
   }
 
   addWindow(title: string) {
-    this.windowService.addWindow(title);
+    this.windowService.addWindow(true, title, true, true);
   }
 
   logIt() {
