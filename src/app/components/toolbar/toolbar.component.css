@@ -15,12 +15,8 @@
   border-radius:4px;
   background-color: #f0f2f6;
   cursor: pointer;
-  /*overflow:hidden;*/
-  /*text-overflow: ellipsis;*/
   max-width:180px;
-  /*white-space: nowrap;*/
   line-height: 24px;
-  border-top-right-radius: 14px;
 }
 .tabItem .text {
   width:calc(100% - 30px);
