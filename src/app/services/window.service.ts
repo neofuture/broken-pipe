@@ -63,7 +63,7 @@ export class WindowService {
     for (let left = 0; (left + width) < window.innerWidth; left += grid) {
       for (let top = 100; (top + height) < window.innerHeight; top += grid) {
 
-        if (!this.isWindowAtPosition(top, left)) {
+        if (!this.isAtPosition(top, left)) {
           return {top, left};
         }
 
@@ -83,7 +83,7 @@ export class WindowService {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  isWindowAtPosition(top, left) {
+  isAtPosition(top, left) {
     for (const item of Object.keys(this.windowList)) {
       if (this.windowList[item].top === top && this.windowList[item].left === left) {
         return true;
