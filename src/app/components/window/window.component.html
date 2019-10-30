@@ -2,7 +2,7 @@
      (transitionend)="closedWindow(windowItem)"
      (mousemove)="resizeCursorSet($event, windowItem)"
      (mouseout)="resizeCursorRestore()"
-     (mousedown)="resizeDragStart($event, windowItem)"
+     (mousedown)="resizeStart($event, windowItem)"
      [ngStyle]="{
                   top: windowItem.top + 'px',
                   left: windowItem.left + 'px',
@@ -11,7 +11,7 @@
                   zIndex: windowItem.zIndex
                  }"
 >
-  <div *ngIf="windowItem.hasTitleBar === true" class="titleBar" (mousedown)="dragStart($event, windowItem)">{{ windowItem.title }}
+  <div *ngIf="windowItem.hasTitleBar === true" class="titleBar" (mousedown)="moveStart($event, windowItem)">{{ windowItem.title }}
     <button class="windowButton" (click)="closeWindow($event, windowItem)">&#10005;</button>
     <button class="windowButton" *ngIf="!windowItem.state.isMaximised && windowItem.resizable" (click)="maximiseWindow($event, windowItem)">
       &#9634;

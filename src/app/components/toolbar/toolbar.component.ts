@@ -19,10 +19,10 @@ export class ToolbarComponent implements OnInit {
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    this.windowService.makeWindowActive(windowItem);
+    this.windowService.active(windowItem);
   }
 
   maximiseWindow(event: MouseEvent, windowItem: WindowModel) {
-    this.windowService.maximiseWindow(windowItem);
+    this.windowService.maximise(windowItem);
   }
 }

@@ -49,6 +49,6 @@ export class DesktopComponent implements OnInit {
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    this.windowService.makeWindowActive(windowItem);
+    this.windowService.active(windowItem);
   }
 }

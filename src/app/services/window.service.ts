@@ -8,7 +8,7 @@ export class WindowService {
   windowList = {};
   constructor() { }
 
-  addWindow(hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean) {
+  new(hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
     id ++;
 
@@ -52,7 +52,7 @@ export class WindowService {
     this.windowList[id] = windowItem;
     setTimeout(() => {
       this.windowList[id].class = 'open';
-      this.makeWindowActive(windowItem);
+      this.active(windowItem);
     });
   }
 
@@ -92,13 +92,13 @@ export class WindowService {
     return false;
   }
 
-  closeWindowById(id: number) {
+  closeById(id: number) {
     if (typeof this.windowList[id] !== 'undefined') {
       this.windowList[id].class = 'closed';
     }
   }
 
-  closeAllWindows() {
+  closeAll() {
     for (const key of Object.keys(this.windowList)) {
       if (typeof this.windowList[key] !== 'undefined') {
         this.windowList[key].class = 'closed';
@@ -106,7 +106,7 @@ export class WindowService {
     }
   }
 
-  makeWindowActive(windowItem: WindowModel) {
+  active(windowItem: WindowModel) {
     let zIndex = 0;
     for (const key of Object.keys(this.windowList)) {
       if (this.windowList[key].zIndex > zIndex) {
@@ -125,7 +125,7 @@ export class WindowService {
       (windowItem.state.isMaximised ? ' maximised' : '');
   }
 
-  makeWindowInactive(windowItem) {
+  inactive(windowItem) {
     windowItem.state.active = false;
     windowItem.class = 'open' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
@@ -152,18 +152,18 @@ export class WindowService {
 
     if (typeof lastWindow !== 'undefined') {
       if (lastWindow.class !== 'closed' && !windowActive) {
-        this.makeWindowActive(lastWindow);
+        this.active(lastWindow);
       }
     }
   }
 
-  maximiseWindow(windowItem: WindowModel) {
+  maximise(windowItem: WindowModel) {
     if (windowItem.resizable) {
       windowItem.state.isMaximised = !windowItem.state.isMaximised;
     }
   }
 
-  minimiseWindow(event, windowItem) {
+  minimise(event, windowItem) {
     event.stopPropagation();
     if (windowItem.state.isMinimised === false) {
       windowItem.entities.minimisedTop = windowItem.top;
@@ -171,6 +171,6 @@ export class WindowService {
       windowItem.entities = {};
     }
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
-    this.makeWindowInactive(windowItem);
+    this.inactive(windowItem);
   }
 }

@@ -12,11 +12,11 @@ export class TitleBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.windowService.addWindow(true, 'No Tab', false, true);
-    this.windowService.addWindow(true, 'Not Resizable', true, false);
-    this.windowService.addWindow(false, 'Test Window 3', true, true);
-    this.windowService.addWindow(true, 'Test Window 4', true, true);
-    this.windowService.addWindow(true, 'Test Window 5', true, true);
+    this.windowService.new(true, 'No Tab', false, true);
+    this.windowService.new(true, 'Not Resizable', true, false);
+    this.windowService.new(false, 'Test Window 3', true, true);
+    this.windowService.new(true, 'Test Window 4', true, true);
+    this.windowService.new(true, 'Test Window 5', true, true);
   }
 
   toggleBlocky() {
@@ -28,7 +28,7 @@ export class TitleBarComponent implements OnInit {
   }
 
   addWindow(title: string) {
-    this.windowService.addWindow(true, title, true, true);
+    this.windowService.new(true, title, true, true);
   }
 
   logIt() {
@@ -36,10 +36,10 @@ export class TitleBarComponent implements OnInit {
   }
 
   closeWindowById(id: number) {
-    this.windowService.closeWindowById(id);
+    this.windowService.closeById(id);
   }
 
   closeAllWindows() {
-    this.windowService.closeAllWindows();
+    this.windowService.closeAll();
   }
 }

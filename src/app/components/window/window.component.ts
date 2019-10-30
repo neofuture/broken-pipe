@@ -28,20 +28,20 @@ export class WindowComponent implements OnInit {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
     if (this.resizeWindowItem !== null) {
-      this.resizeDragGo(event);
+      this.resizeGo(event);
     }
     if (this.dragWindowItem !== null) {
-      this.dragGo(event);
+      this.moveGo(event);
     }
   }
 
   @HostListener('document:mouseup')
   onMouseUp() {
     if (this.resizeWindowItem !== null) {
-      this.resizeDragStop();
+      this.resizeStop();
     }
     if (this.dragWindowItem !== null) {
-      this.dragStop();
+      this.moveStop();
     }
   }
 
@@ -114,7 +114,7 @@ export class WindowComponent implements OnInit {
     document.body.style.cursor = '';
   }
 
-  resizeDragStart(event, windowItem: WindowModel) {
+  resizeStart(event, windowItem: WindowModel) {
     if (!event.target.classList.contains('windowItem')) {
       return false;
     }
@@ -131,7 +131,7 @@ export class WindowComponent implements OnInit {
 
   }
 
-  resizeDragGo(event) {
+  resizeGo(event) {
     if (this.resizeWindowItem !== null) {
 
       let north = false;
@@ -211,7 +211,7 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  resizeDragStop() {
+  resizeStop() {
     if (this.resizeWindowItem !== null) {
       this.resizeWindowItem.entities = {};
       this.resizeWindowItem = null;
@@ -219,19 +219,7 @@ export class WindowComponent implements OnInit {
     document.body.style.cursor = '';
   }
 
-  makeWindowActive(windowItem: WindowModel) {
-    this.windowService.makeWindowActive(windowItem);
-  }
-
-  maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
-    this.windowService.maximiseWindow(windowItem);
-  }
-
-  minimiseWindow(event: MouseEvent, windowItem: WindowModel) {
-    this.windowService.minimiseWindow(event, windowItem);
-  }
-
-  dragStart(event, windowItem: WindowModel) {
+  moveStart(event, windowItem: WindowModel) {
     if (!event.target.classList.contains('titleBar')) {
       return false;
     }
@@ -247,7 +235,7 @@ export class WindowComponent implements OnInit {
 
   }
 
-  dragGo(event) {
+  moveGo(event) {
     if (this.dragWindowItem !== null) {
       const x = event.pageX;
       const y = event.pageY;
@@ -277,10 +265,22 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  dragStop() {
+  moveStop() {
     if (this.dragWindowItem !== null) {
       this.dragWindowItem.entities = {};
       this.dragWindowItem = null;
     }
+  }
+
+  makeWindowActive(windowItem: WindowModel) {
+    this.windowService.active(windowItem);
+  }
+
+  maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
+    this.windowService.maximise(windowItem);
+  }
+
+  minimiseWindow(event: MouseEvent, windowItem: WindowModel) {
+    this.windowService.minimise(event, windowItem);
   }
 }
