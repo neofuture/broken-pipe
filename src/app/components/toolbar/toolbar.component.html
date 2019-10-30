@@ -3,6 +3,7 @@
       [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 16px)'}"
       (click)="makeWindowActive(windowList[windowItem])"
       (dblclick)="maximiseWindow($event, windowList[windowItem])">
+  <span  [ngClass]="{'minimised': windowList[windowItem].state.isMinimised}">
   <div class="text">{{ windowList[windowItem].titleBar}}</div>
 
   <button *ngIf="!windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
@@ -10,4 +11,6 @@
     </button>
     <button *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
       <span>&#9723;</span><span>&#9723;</span></button>
+  </span>
+
 </span>

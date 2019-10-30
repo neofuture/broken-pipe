@@ -8,3 +8,4 @@
 8) ~~BUG - Theres is a problem with zIndex tracking so need to refactor to find the highest zIndex in the window object then add one when makeactive is called~~
 
 * Should a window return to the view port in the same state is was minimised ?
+** on window minimise should we search for the window that is the last used IE the highest zIndex that was last used, and activate that window

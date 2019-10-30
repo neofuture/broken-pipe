@@ -110,6 +110,8 @@ button span:last-child {
 
 .minimised {
   top:100% !important;
+  width:100px !important;
+  opacity:0;
 }
 
 
