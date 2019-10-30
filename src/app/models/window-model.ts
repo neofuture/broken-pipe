@@ -1,5 +1,5 @@
 export interface WindowModel {
-  titleBar: string;
+  title: string;
   class: string;
   body: string;
   zIndex: number;

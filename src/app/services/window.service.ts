@@ -26,7 +26,7 @@ export class WindowService {
 
     let windowItem: WindowModel;
     windowItem = {
-      titleBar: title + ' ' + id,
+      title: title + ' ' + id,
       body: 'testing',
       class: 'new active',
       zIndex,
@@ -127,7 +127,7 @@ export class WindowService {
 
   makeWindowInactive(windowItem) {
     windowItem.state.active = false;
-    windowItem.class = 'open ' +
+    windowItem.class = 'open' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');
   }
