@@ -8,12 +8,12 @@
 
   <button class="tabButton" *ngIf="!windowList[windowItem].state.isMaximised && windowList[windowItem].resizable"
           (click)="maximiseWindow($event, windowList[windowItem])">
-      &#9634;
-    </button>
-    <button class="tabButton" *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable"
+    &#9634;
+  </button>
+  <button class="tabButton" *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable"
             (click)="maximiseWindow($event, windowList[windowItem])">
-      &#9723;
-    </button>
+    &#9723;
+  </button>
   </span>
 
 </span>

@@ -1,20 +1,16 @@
 <app-titlebar class="titleBarTop" id="titleBarTop"></app-titlebar>
-<div class="desktop" [ngStyle]="{height: (innerHeight - 72) + 'px'}">
+<div class="desktop" [ngStyle]="{height: desktopHeight + 'px'}">
   <pre style="width:300px;height:300px;overflow:auto;float:right;">
     {{ windowList | json }}
   </pre>
-  <button (click)="addWindow('Button test window')">Add Window</button>
-  <button (click)="logIt()">Log Windows</button>
-  <button (click)="closeWindowById(3)">Close Window 3</button>
-  <button (click)="closeAllWindows()">Close All Windows</button>
-  <button (click)="toggleBlocky()">Toggle Style</button>
   <div *ngFor="let windowItem of objectKeys(windowList)">
     <app-window [windowItem]="windowList[windowItem]"
-                [windowList]="windowList"
+                [titleBarTopHeight]="titleBarTopHeight"
+                [toolbarHeight]="toolbarHeight"
                 (closing)="onClose(windowList[windowItem])"
                 (closed)="onClosed(windowList[windowItem])"
                 (click)="makeWindowActive(windowList[windowItem])">
     </app-window>
   </div>
 </div>
-<app-toolbar [windowList]="windowList" class="toolbar" id="toolbar"></app-toolbar>
+<app-toolbar class="toolbar" id="toolbar"></app-toolbar>

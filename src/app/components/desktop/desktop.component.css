@@ -1,14 +1,12 @@
 .desktop {
   width:100%;
   overflow:auto;
-  position:fixed;
-  top:36px;
-  background-color:var(--background-grey);
+  background-color:var(--background-color);
+  position:relative;
 }
 
 .toolbar {
   display:block;
-  position:fixed;
   bottom:0;
   width:100%;
   background-color:var(--primary);
@@ -20,13 +18,8 @@
 
 .titleBarTop {
   display:block;
-  position:fixed;
   top:0;
   width:100%;
-  background-color:var(--primary);
-  left:0;
-  height:42px;
-  overflow:hidden;
 }
 
 .active {

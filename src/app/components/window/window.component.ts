@@ -1,5 +1,6 @@
 import {ApplicationRef, Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {WindowModel} from '../../models/window-model';
+import {WindowService} from '../../services/window.service';
 
 @Component({
   selector: 'app-window',
@@ -10,15 +11,20 @@ export class WindowComponent implements OnInit {
   resizeDirection: any;
   innerWidth: number;
   innerHeight: number;
+
   resizeWindowItem: any = null;
   dragWindowItem: any = null;
-  titleBarTopHeight: any;
-  toolbarHeight: any;
+  windowList: {};
+
+  @Input() titleBarTopHeight: number;
+  @Input() toolbarHeight: number;
 
   @Input() windowItem: WindowModel;
-  @Input() windowList;
+  // @Input() windowList;
+
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
+
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
@@ -30,32 +36,29 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  @HostListener('document:mouseup', ['$event'])
+  @HostListener('document:mouseup')
   onMouseUp(event) {
     if (this.resizeWindowItem !== null) {
-      this.resizeDragStop(event);
+      this.resizeDragStop();
     }
     if (this.dragWindowItem !== null) {
-      this.dragStop(event);
+      this.dragStop();
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  @HostListener('window:resize')
+  onResize() {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
-    this.titleBarTopHeight = document.getElementById('titleBarTop').offsetHeight;
-    this.toolbarHeight = document.getElementById('toolbar').offsetHeight;
   }
 
-  constructor() {
+  constructor(private windowService: WindowService) {
   }
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
-    this.titleBarTopHeight = document.getElementById('titleBarTop').offsetHeight;
-    this.toolbarHeight = document.getElementById('toolbar').offsetHeight;
+    this.windowList = this.windowService.windowList;
   }
 
   closeWindow(event, windowItem: WindowModel) {
@@ -213,7 +216,7 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  resizeDragStop(event) {
+  resizeDragStop() {
     if (this.resizeWindowItem !== null) {
       this.resizeWindowItem.entities = {};
       this.resizeWindowItem = null;
@@ -222,43 +225,15 @@ export class WindowComponent implements OnInit {
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    let zIndex = 0;
-    // tslint:disable-next-line:forin
-    for (const key in this.windowList) {
-      if (this.windowList[key].zIndex > zIndex) {
-        zIndex = this.windowList[key].zIndex;
-      }
-      this.makeWindowInactive(this.windowList[key]);
-    }
-    zIndex++;
-    windowItem.zIndex = zIndex;
-    windowItem.state.active = true;
-    windowItem.class = 'open active' +
-      (windowItem.state.isMaximised ? ' maximised' : '') +
-      (windowItem.state.isMinimised ? ' minimised' : '');
+    this.windowService.makeWindowActive(windowItem);
   }
 
   maximiseWindow($event: MouseEvent, windowItem: WindowModel) {
-    windowItem.state.isMaximised = !windowItem.state.isMaximised;
+    this.windowService.maximiseWindow(windowItem);
   }
 
   minimiseWindow(event: MouseEvent, windowItem: WindowModel) {
-    event.stopPropagation();
-    if (windowItem.state.isMinimised === false) {
-      // @ts-ignore
-      windowItem.entities.minimisedTop = windowItem.top;
-    } else {
-      windowItem.entities = {};
-    }
-    windowItem.state.isMinimised = !windowItem.state.isMinimised;
-    this.makeWindowInactive(windowItem);
-  }
-
-  makeWindowInactive(windowItem) {
-    windowItem.state.active = false;
-    windowItem.class = 'open ' +
-      (windowItem.state.isMaximised ? ' maximised' : '') +
-      (windowItem.state.isMinimised ? ' minimised' : '');
+    this.windowService.minimiseWindow(event, windowItem);
   }
 
   dragStart(event: MouseEvent, windowItem: WindowModel) {
@@ -310,7 +285,7 @@ export class WindowComponent implements OnInit {
     }
   }
 
-  dragStop(event) {
+  dragStop() {
     if (this.dragWindowItem !== null) {
       this.dragWindowItem.entities = {};
       this.dragWindowItem = null;

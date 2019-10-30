@@ -1,0 +1,10 @@
+.titleBarTop {
+  background-color:var(--primary);
+  left:0;
+  height:42px;
+}
+
+.toolbar {
+  background-color:var(--background-grey);
+  height:44px;
+}

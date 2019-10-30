@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WindowModel} from '../../models/window-model';
+import {WindowService} from '../../services/window.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,41 +8,21 @@ import {WindowModel} from '../../models/window-model';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  @Input() windowList: WindowModel;
+  windowList: {};
 
   objectKeys = Object.keys;
 
-  constructor() { }
+  constructor(private windowService: WindowService) { }
 
   ngOnInit() {
+    this.windowList = this.windowService.windowList;
   }
 
   makeWindowActive(windowItem: WindowModel) {
-    let zIndex = 0;
-    // tslint:disable-next-line:forin
-    for (const key in this.windowList) {
-      if(this.windowList[key].zIndex > zIndex) {
-        zIndex = this.windowList[key].zIndex;
-      }
-      this.makeWindowInactive(this.windowList[key]);
-    }
-    zIndex++;
-    windowItem.zIndex = zIndex;
-    windowItem.state.active = true;
-    windowItem.state.isMinimised = false;
-    windowItem.class = 'open active' +
-      (windowItem.state.isMaximised ? ' maximised' : '') +
-      (windowItem.state.isMinimised ? ' minimised' : '');
-  }
-
-  makeWindowInactive(windowItem) {
-    windowItem.state.active = false;
-    windowItem.class = 'open ' +
-      (windowItem.state.isMaximised ? ' maximised' : '') +
-      (windowItem.state.isMinimised ? ' minimised' : '');
+    this.windowService.makeWindowActive(windowItem);
   }
 
   maximiseWindow(event: MouseEvent, windowItem: WindowModel) {
-    windowItem.state.isMaximised = !windowItem.state.isMaximised;
+    this.windowService.maximiseWindow(windowItem);
   }
 }
