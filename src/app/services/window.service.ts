@@ -8,7 +8,7 @@ export class WindowService {
   windowList = {};
   constructor() { }
 
-  addWindow(hasTitleBar, title, hasTab, resizable) {
+  addWindow(hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
     id ++;
 
@@ -17,12 +17,13 @@ export class WindowService {
 
     const position = this.findXYPosition(height, width);
     let zIndex = 0;
-    // tslint:disable-next-line:forin
+
     for (const key in this.windowList) {
       if (this.windowList[key].zIndex > zIndex) {
         zIndex = this.windowList[key].zIndex;
       }
     }
+
     let windowItem: WindowModel;
     windowItem = {
       titleBar: title + ' ' + id,
@@ -83,7 +84,7 @@ export class WindowService {
   }
 
   isWindowAtPosition(top, left) {
-    for (const item in this.windowList) {
+    for (const item of Object.keys(this.windowList)) {
       if (this.windowList[item].top === top && this.windowList[item].left === left) {
         return true;
       }
@@ -98,7 +99,7 @@ export class WindowService {
   }
 
   closeAllWindows() {
-    for (const key in this.windowList) {
+    for (const key of Object.keys(this.windowList)) {
       if (typeof this.windowList[key] !== 'undefined') {
         this.windowList[key].class = 'closed';
       }
@@ -107,8 +108,7 @@ export class WindowService {
 
   makeWindowActive(windowItem: WindowModel) {
     let zIndex = 0;
-    // tslint:disable-next-line:forin
-    for (const key in this.windowList) {
+    for (const key of Object.keys(this.windowList)) {
       if (this.windowList[key].zIndex > zIndex) {
         zIndex = this.windowList[key].zIndex;
       }
@@ -122,8 +122,7 @@ export class WindowService {
     windowItem.state.active = true;
     windowItem.state.isMinimised = false;
     windowItem.class = 'open active' +
-      (windowItem.state.isMaximised ? ' maximised' : '') +
-      (windowItem.state.isMinimised ? ' minimised' : '');
+      (windowItem.state.isMaximised ? ' maximised' : '');
   }
 
   makeWindowInactive(windowItem) {
@@ -164,10 +163,9 @@ export class WindowService {
     }
   }
 
-  minimiseWindow(event: MouseEvent, windowItem: WindowModel) {
+  minimiseWindow(event, windowItem) {
     event.stopPropagation();
     if (windowItem.state.isMinimised === false) {
-      // @ts-ignore
       windowItem.entities.minimisedTop = windowItem.top;
     } else {
       windowItem.entities = {};

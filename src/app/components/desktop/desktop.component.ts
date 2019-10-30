@@ -1,6 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {WindowModel} from '../../models/window-model';
-import {WindowComponent} from '../window/window.component';
 import {WindowService} from '../../services/window.service';
 
 @Component({
@@ -19,8 +18,8 @@ export class DesktopComponent implements OnInit {
   titleBarTopHeight: any;
   toolbarHeight: any;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  @HostListener('window:resize')
+  onResize() {
     this.resize();
   }
 

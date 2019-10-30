@@ -56,7 +56,7 @@
 .minimised {
   border-bottom:4px solid orange;
   border-bottom-style: inset;
-  padding-bottom:0px;
+  padding-bottom:0;
 }
 
 .minimised * {
