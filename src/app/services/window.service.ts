@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {WindowModel} from '../models/window-model';
 
 @Injectable({
@@ -6,11 +6,13 @@ import {WindowModel} from '../models/window-model';
 })
 export class WindowService {
   windowList = {};
-  constructor() { }
+
+  constructor() {
+  }
 
   new(hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
-    id ++;
+    id++;
 
     const height = this.randomIntFromInterval(200, 400);
     const width = this.randomIntFromInterval(400, 800);
@@ -27,7 +29,7 @@ export class WindowService {
     let windowItem: WindowModel;
     windowItem = {
       title: title + ' ' + id,
-      body: 'testing',
+      body: 'testing - ' + title,
       class: 'new active',
       zIndex,
       top: position.top,
@@ -140,12 +142,14 @@ export class WindowService {
     let lastWindow: WindowModel;
     let windowActive = false;
     for (const key in this.windowList) {
-      if (windowItem === this.windowList[key]) {
-        delete this.windowList[key];
-      } else {
-        lastWindow = this.windowList[key];
-        if (lastWindow.state.active) {
-          windowActive = true;
+      if (this.windowList[key].state.isMinimised === false) {
+        if (windowItem === this.windowList[key]) {
+          delete this.windowList[key];
+        } else {
+          lastWindow = this.windowList[key];
+          if (lastWindow.state.active) {
+            windowActive = true;
+          }
         }
       }
     }

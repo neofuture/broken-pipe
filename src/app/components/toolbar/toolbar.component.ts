@@ -12,7 +12,8 @@ export class ToolbarComponent implements OnInit {
 
   objectKeys = Object.keys;
 
-  constructor(private windowService: WindowService) { }
+  constructor(private windowService: WindowService) {
+  }
 
   ngOnInit() {
     this.windowList = this.windowService.windowList;
@@ -24,5 +25,15 @@ export class ToolbarComponent implements OnInit {
 
   maximiseWindow(event: MouseEvent, windowItem: WindowModel) {
     this.windowService.maximise(windowItem);
+  }
+
+  tabCount() {
+    let tabs = 0;
+    for (const item in this.windowList) {
+      if (this.windowList[item].hasTab) {
+        tabs++;
+      }
+    }
+    return tabs;
   }
 }

@@ -99,6 +99,7 @@
 .maximised .titleBar {
   border-radius:0;
   border:0;
+  cursor:default !important;
 }
 
 .minimised {

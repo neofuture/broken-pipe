@@ -85,7 +85,7 @@ export class WindowComponent implements OnInit {
     ) {
       const xOff = event.offsetX;
       const yOff = event.offsetY;
-      const resizeCornerSize = 100;
+      const resizeCornerSize = 15;
       this.resizeDirection = '';
 
       if (yOff <= resizeCornerSize) {
@@ -192,7 +192,9 @@ export class WindowComponent implements OnInit {
       }
 
       if (north || east || south || west) {
-        this.resizeWindowItem.class = 'open active noTransition';
+        this.resizeWindowItem.class = 'open active noTransition' +
+          (this.resizeWindowItem.state.isMaximised ? ' maximised' : '') +
+          (this.resizeWindowItem.state.isMinimised ? ' minimised' : '');
       }
 
       if (east || west) {
@@ -231,7 +233,9 @@ export class WindowComponent implements OnInit {
 
     this.dragWindowItem.entities.xOffset = event.target.parentNode.offsetLeft - x;
     this.dragWindowItem.entities.yOffset = event.target.parentNode.offsetTop - y;
-    this.dragWindowItem.class = 'open active noTransition';
+    this.dragWindowItem.class = 'open active noTransition' +
+      (this.dragWindowItem.state.isMaximised ? ' maximised' : '') +
+      (this.dragWindowItem.state.isMinimised ? ' minimised' : '');
 
   }
 

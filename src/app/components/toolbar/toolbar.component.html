@@ -2,7 +2,7 @@
   <span
     *ngIf="windowList[windowItem].hasTab"
     [ngClass]="['tabItem',  windowList[windowItem].class]"
-    [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 17px)'}"
+    [ngStyle]="{width: 'calc(' + (100 / tabCount()) + '% - 17px)'}"
     (click)="makeWindowActive(windowList[windowItem])"
     (dblclick)="maximiseWindow($event, windowList[windowItem])">
   <span [ngClass]="{'minimised': windowList[windowItem].state.isMinimised}">

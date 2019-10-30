@@ -9,6 +9,7 @@ import { TitleBarComponent } from './components/titlebar/titlebar.component';
 import { PrettyPrintPipe } from './pipes/pretty-print.pipe';
 import { JsonPipe } from './pipes/json.pipe';
 import {WindowService} from './services/window.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {WindowService} from './services/window.service';
     JsonPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [WindowService],
   bootstrap: [AppComponent]

@@ -1,11 +1,51 @@
 <div>
   <div class="titleBarTop">titlebar works!</div>
   <div class="toolbar">
-    <button (click)="addWindow('Button test window')">Add Window</button>
-    <button (click)="logIt()">Log Windows</button>
-    <button (click)="closeWindowById(3)">Close Window 3</button>
-    <button (click)="closeAllWindows()">Close All Windows</button>
-    <button (click)="toggleBlocky()">Toggle Style</button>
+    <div style="padding:10px;">
+      <table>
+        <tr>
+          <td>Title</td>
+          <td>Title Bar</td>
+          <td>Tab</td>
+          <td>Resizable</td>
+        </tr>
+        <tr>
+          <td>
+            <input name="title" [(ngModel)]="title" value="Test Window">
+          </td>
+          <td>
+            <select name="hasTitleBar" [(ngModel)]="hasTitleBar">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </td>
+          <td>
+            <select name="hasTab" [(ngModel)]="hasTab">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </td>
+          <td>
+            <select name="resizable" [(ngModel)]="resizable">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </td>
+          <td>
+            <button (click)="addWindow()">Add Window</button>
+          </td>
+          <td>
+            |
+          </td>
+          <td>
+            <button (click)="closeAllWindows()">Close All Windows</button>
+          </td>
+          <td>
+            <button (click)="toggleBlocky()">Toggle Style</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 

@@ -18,6 +18,11 @@
   max-width:180px;
   line-height: 24px;
   height:24px;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .tabItem .text {
   width:calc(100% - 30px);

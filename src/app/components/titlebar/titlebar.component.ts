@@ -7,6 +7,10 @@ import {WindowService} from '../../services/window.service';
   styleUrls: ['./titlebar.component.css']
 })
 export class TitleBarComponent implements OnInit {
+  hasTitleBar = true;
+  title = 'Test Window';
+  hasTab = true;
+  resizable = true;
 
   constructor(private windowService: WindowService) {
   }
@@ -14,7 +18,7 @@ export class TitleBarComponent implements OnInit {
   ngOnInit() {
     this.windowService.new(true, 'No Tab', false, true);
     this.windowService.new(true, 'Not Resizable', true, false);
-    this.windowService.new(false, 'Test Window 3', true, true);
+    this.windowService.new(false, 'No Title Bar', true, true);
     this.windowService.new(true, 'Test Window 4', true, true);
     this.windowService.new(true, 'Test Window 5', true, true);
   }
@@ -27,16 +31,13 @@ export class TitleBarComponent implements OnInit {
     });
   }
 
-  addWindow(title: string) {
-    this.windowService.new(true, title, true, true);
-  }
-
-  logIt() {
-    console.log(this.windowService.windowList);
-  }
-
-  closeWindowById(id: number) {
-    this.windowService.closeById(id);
+  addWindow() {
+    this.windowService.new(
+      JSON.parse(String(this.hasTitleBar)),
+      this.title,
+      JSON.parse(String(this.hasTab)),
+      JSON.parse(String(this.resizable))
+    );
   }
 
   closeAllWindows() {
