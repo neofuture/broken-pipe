@@ -17,13 +17,14 @@ body{
   padding:7px !important;
 }
 
-.blocky .maximised {
+.blocky .windowItem.maximised {
   padding:0 !important;
 }
 
 .blocky .windowItem.active {
   background-color: transparent !important;
   box-shadow: none !important;
+  padding:0 !important;
 }
 .blocky .titleBar{
   border:1px solid #c8c7c9 !important;
@@ -74,7 +75,18 @@ body{
 .noTransition * {
   transition: all 0s !important;
 }
-
+button {
+  border: none;
+  background-color: var(--primary-light);
+  border-radius: 2px;
+  padding:6px;
+  color: var(--background-color);
+  float: right;
+  cursor:pointer;
+  position:relative;
+  transition: opacity 200ms, width 200ms, height, 200ms;
+  margin:2px;
+}
 :root {
   --primary: #337799;
   --primary-light: #438eb5;

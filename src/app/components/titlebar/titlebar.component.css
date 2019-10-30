@@ -1,7 +1,10 @@
 .titleBarTop {
   background-color:var(--primary);
   left:0;
-  height:42px;
+  height:28px;
+  line-height:28px;
+  padding:0 0 0 8px;
+  color:white;
 }
 
 .toolbar {
