@@ -221,10 +221,7 @@ export class WindowComponent implements OnInit {
       if(this.windowList[key].zIndex > zIndex) {
         zIndex = this.windowList[key].zIndex;
       }
-      this.windowList[key].state.active = false;
-      this.windowList[key].class = 'open ' +
-        (this.windowList[key].state.isMaximised ? ' maximised' : '') +
-        (this.windowList[key].state.isMinimised ? ' minimised' : '');
+      this.makeWindowInactive(this.windowList[key]);
     }
     zIndex++;
     windowItem.zIndex = zIndex;
@@ -247,10 +244,10 @@ export class WindowComponent implements OnInit {
       windowItem.entities = {};
     }
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
-    this.makeInactive(windowItem);
+    this.makeWindowInactive(windowItem);
   }
 
-  makeInactive(windowItem) {
+  makeWindowInactive(windowItem) {
     windowItem.state.active = false;
     windowItem.class = 'open ' +
       (windowItem.state.isMaximised ? ' maximised' : '') +

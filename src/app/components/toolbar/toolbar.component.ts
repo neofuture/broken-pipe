@@ -23,15 +23,20 @@ export class ToolbarComponent implements OnInit {
       if(this.windowList[key].zIndex > zIndex) {
         zIndex = this.windowList[key].zIndex;
       }
-      this.windowList[key].state.active = false;
-      this.windowList[key].class = 'open ' +
-        (this.windowList[key].state.isMaximised ? ' maximised' : '') +
-        (this.windowList[key].state.isMinimised ? ' minimised' : '');
+      this.makeWindowInactive(this.windowList[key]);
     }
     zIndex++;
     windowItem.zIndex = zIndex;
     windowItem.state.active = true;
+    windowItem.state.isMinimised = false;
     windowItem.class = 'open active' +
+      (windowItem.state.isMaximised ? ' maximised' : '') +
+      (windowItem.state.isMinimised ? ' minimised' : '');
+  }
+
+  makeWindowInactive(windowItem) {
+    windowItem.state.active = false;
+    windowItem.class = 'open ' +
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');
   }
