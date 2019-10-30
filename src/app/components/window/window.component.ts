@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {ApplicationRef, Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {WindowModel} from '../../models/window-model';
 
 @Component({
@@ -238,8 +238,23 @@ export class WindowComponent implements OnInit {
     windowItem.state.isMaximised = !windowItem.state.isMaximised;
   }
 
-  minimiseWindow($event: MouseEvent, windowItem: WindowModel) {
+  minimiseWindow(event: MouseEvent, windowItem: WindowModel) {
+    event.stopPropagation();
+    if (windowItem.state.isMinimised === false) {
+      // @ts-ignore
+      windowItem.entities.minimisedTop = windowItem.top;
+    } else {
+      windowItem.entities = {};
+    }
     windowItem.state.isMinimised = !windowItem.state.isMinimised;
+    this.makeInactive(windowItem);
+  }
+
+  makeInactive(windowItem) {
+    windowItem.state.active = false;
+    windowItem.class = 'open ' +
+      (windowItem.state.isMaximised ? ' maximised' : '') +
+      (windowItem.state.isMinimised ? ' minimised' : '');
   }
 
   dragStart(event: MouseEvent, windowItem: WindowModel) {
