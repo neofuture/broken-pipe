@@ -1,16 +1,19 @@
 <span *ngFor="let windowItem of objectKeys(windowList)"
       [ngClass]="['tabItem',  windowList[windowItem].class]"
-      [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 16px)'}"
+      [ngStyle]="{width: 'calc(' + (100 / objectKeys(windowList).length) + '% - 17px)'}"
       (click)="makeWindowActive(windowList[windowItem])"
       (dblclick)="maximiseWindow($event, windowList[windowItem])">
-  <span  [ngClass]="{'minimised': windowList[windowItem].state.isMinimised}">
+  <span [ngClass]="{'minimised': windowList[windowItem].state.isMinimised}">
   <div class="text">{{ windowList[windowItem].titleBar}}</div>
 
-  <button *ngIf="!windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
+  <button class="tabButton" *ngIf="!windowList[windowItem].state.isMaximised && windowList[windowItem].resizable"
+          (click)="maximiseWindow($event, windowList[windowItem])">
       &#9634;
     </button>
-    <button *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable" (click)="maximiseWindow($event, windowList[windowItem])">
-      <span>&#9723;</span><span>&#9723;</span></button>
+    <button class="tabButton" *ngIf="windowList[windowItem].state.isMaximised && windowList[windowItem].resizable"
+            (click)="maximiseWindow($event, windowList[windowItem])">
+      &#9723;
+    </button>
   </span>
 
 </span>

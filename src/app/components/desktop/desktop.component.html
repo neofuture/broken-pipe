@@ -1,4 +1,4 @@
-<app-titlebar class="titlebar"></app-titlebar>
+<app-titlebar class="titleBarTop" id="titleBarTop"></app-titlebar>
 <div class="desktop" [ngStyle]="{height: (innerHeight - 72) + 'px'}">
   <pre style="width:300px;height:300px;overflow:auto;float:right;">
     {{ windowList | json }}
@@ -7,6 +7,7 @@
   <button (click)="logIt()">Log Windows</button>
   <button (click)="closeWindowById(3)">Close Window 3</button>
   <button (click)="closeAllWindows()">Close All Windows</button>
+  <button (click)="toggleBlocky()">Toggle Style</button>
   <div *ngFor="let windowItem of objectKeys(windowList)">
     <app-window [windowItem]="windowList[windowItem]"
                 [windowList]="windowList"
@@ -16,4 +17,4 @@
     </app-window>
   </div>
 </div>
-<app-toolbar [windowList]="windowList" class="toolbar"></app-toolbar>
+<app-toolbar [windowList]="windowList" class="toolbar" id="toolbar"></app-toolbar>

@@ -3,7 +3,7 @@
   overflow:auto;
   position:fixed;
   top:36px;
-  background-color:#f0f0f0;
+  background-color:var(--background-grey);
 }
 
 .toolbar {
@@ -11,21 +11,20 @@
   position:fixed;
   bottom:0;
   width:100%;
-  background-color:#379;
+  background-color:var(--primary);
   left:0;
-  border-top:1px solid #2d688a;
   height:42px;
   overflow:hidden;
+  padding:2px 4px 0 4px;
 }
 
-.titlebar {
+.titleBarTop {
   display:block;
   position:fixed;
   top:0;
   width:100%;
-  background-color:#379;
+  background-color:var(--primary);
   left:0;
-  border-top:1px solid #2d688a;
   height:42px;
   overflow:hidden;
 }

@@ -12,6 +12,8 @@ export class WindowComponent implements OnInit {
   innerHeight: number;
   resizeWindowItem: any = null;
   dragWindowItem: any = null;
+  titleBarTopHeight: any;
+  toolbarHeight: any;
 
   @Input() windowItem: WindowModel;
   @Input() windowList;
@@ -42,6 +44,8 @@ export class WindowComponent implements OnInit {
   onResize(event) {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
+    this.titleBarTopHeight = document.getElementById('titleBarTop').offsetHeight;
+    this.toolbarHeight = document.getElementById('toolbar').offsetHeight;
   }
 
   constructor() {
@@ -50,6 +54,8 @@ export class WindowComponent implements OnInit {
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
+    this.titleBarTopHeight = document.getElementById('titleBarTop').offsetHeight;
+    this.toolbarHeight = document.getElementById('toolbar').offsetHeight;
   }
 
   closeWindow(event, windowItem: WindowModel) {
@@ -115,6 +121,7 @@ export class WindowComponent implements OnInit {
       return false;
     }
     this.resizeWindowItem = windowItem;
+    this.makeWindowActive(this.resizeWindowItem);
 
     this.resizeWindowItem.entities.xPosition = event.x || event.pageX;
     this.resizeWindowItem.entities.yPosition = event.y || event.pageY;
@@ -123,11 +130,11 @@ export class WindowComponent implements OnInit {
     this.resizeWindowItem.entities.oldTop = parseInt(this.resizeWindowItem.top, 10);
     this.resizeWindowItem.entities.oldWidth = parseInt(this.resizeWindowItem.width, 10);
     this.resizeWindowItem.entities.oldHeight = parseInt(this.resizeWindowItem.height, 10);
+
   }
 
   resizeDragGo(event) {
     if (this.resizeWindowItem !== null) {
-      this.makeWindowActive(this.resizeWindowItem);
 
       let north = false;
       let south = false;
@@ -157,12 +164,12 @@ export class WindowComponent implements OnInit {
         x = this.innerWidth - 5;
       }
 
-      if (y <= 46) {
-        y = 46;
+      if (y <= this.titleBarTopHeight) {
+        y = this.titleBarTopHeight;
       }
 
-      if (y >= this.innerHeight - 52) {
-        y = this.innerHeight - 52;
+      if (y >= this.innerHeight - this.toolbarHeight - 6) {
+        y = this.innerHeight - this.toolbarHeight - 6;
       }
 
       let dx = x - this.resizeWindowItem.entities.xPosition;
@@ -218,7 +225,7 @@ export class WindowComponent implements OnInit {
     let zIndex = 0;
     // tslint:disable-next-line:forin
     for (const key in this.windowList) {
-      if(this.windowList[key].zIndex > zIndex) {
+      if (this.windowList[key].zIndex > zIndex) {
         zIndex = this.windowList[key].zIndex;
       }
       this.makeWindowInactive(this.windowList[key]);
@@ -285,8 +292,8 @@ export class WindowComponent implements OnInit {
         yOff = 1;
       }
 
-      if (yOff > this.innerHeight - 120) {
-        yOff = this.innerHeight - 120;
+      if (yOff > this.innerHeight - ((this.toolbarHeight * 2) + this.titleBarTopHeight)) {
+        yOff = this.innerHeight - ((this.toolbarHeight * 2) + this.titleBarTopHeight);
       }
 
       if (xOff + this.dragWindowItem.width - 60 < 0) {

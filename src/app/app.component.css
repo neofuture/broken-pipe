@@ -19,3 +19,7 @@ html {
   user-select: none;
   box-sizing:border-box;
 }
+
+button {
+  outline: none;
+}

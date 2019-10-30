@@ -4,3 +4,81 @@ body{
   padding:0;
   font-size:13px;
 }
+
+.blocky .windowItem {
+  border: none !important;
+  background-color: rgba(0,0,0,0) !important;
+  padding:7px !important;
+}
+
+.blocky .windowItem.active {
+  border: none !important;
+  background-color: rgba(0,0,0,0) !important;
+  padding:7px !important;
+}
+
+.blocky .maximised {
+  padding:0 !important;
+}
+
+.blocky .windowItem.active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.blocky .titlebar{
+  border:1px solid #c8c7c9 !important;
+  /*border-bottom:none !important;*/
+  margin:0 !important;
+  width: calc(100% - 10px) !important;
+  border-radius:0 !important;
+}
+.blocky .clientArea{
+  border:1px solid #e0dfe1 !important;
+  border-top:none !important;
+  margin:0 !important;
+  padding:6px !important;
+  border-radius:0 !important;
+  width:calc(100% - 14px) !important;
+  height:calc(100% - 46px) !important;
+}
+.blocky .windowButton {
+  border-radius:0 !important;
+  background-color:transparent !important;
+  color:#444444 !important;
+}
+
+.blocky .active .windowButton {
+  color:white !important;
+}
+
+.blocky .tabButton {
+  border-radius:0 !important;
+  background-color:transparent !important;
+  color:#444444 !important;
+}
+
+.blocky .active .tabButton {
+  color:white !important;
+}
+
+.blocky .tabItem {
+  border-radius: 0 !important;
+}
+
+:root {
+  --primary: #337799;
+  --primary-light: #438eb5;
+  --text: #444444;
+  --background-color: #ffffff;
+  --background-grey: #f0f0f0;
+  --background-min-grey: #dedede;
+  --background-darker-grey: #e0dfe1;
+
+  /*--primary: #337799;*/
+  /*--primary-light: #438eb5;*/
+  /*--text: #c1c1c1;*/
+  /*--background-color: #222222;*/
+  /*--background-grey: #4a4a4a;*/
+  /*--background-min-grey: #6c6c6c;*/
+  /*--background-darker-grey: #454545;*/
+}

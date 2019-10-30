@@ -13,10 +13,11 @@
   padding:4px;
   margin:4px;
   border-radius:4px;
-  background-color: #f0f2f6;
+  background-color: var(--background-grey);
   cursor: pointer;
   max-width:180px;
   line-height: 24px;
+  height:24px;
 }
 .tabItem .text {
   width:calc(100% - 30px);
@@ -26,40 +27,30 @@
   display:inline-block;
 }
 .active {
-  color:white;
-  background-color: #438eb5;
+  color:var(--background-color);
+  background-color: var(--primary-light);
 }
 
-button {
+.tabButton {
   border: none;
-  background-color: #438eb5;
+  background-color: var(--primary-light);
   border-radius: 50%;
   min-width: 20px;
   min-height: 20px;
-  color: #fff;
+  color: var(--background-color);
   padding: 0;
   float: right;
   cursor:pointer;
   position:relative;
   transition: opacity 200ms, width 200ms, height, 200ms;
-
+  margin:2px;
 }
 
 .active button {
-  color: #379;
-  background-color:white;
+  color: var(--primary);
+  background-color:var(--background-color);
   transition: opacity 200ms, width 200ms, height, 200ms;
 
-}
-button span:first-child {
-  position:absolute;
-  top:2px;
-  left:3px;
-}
-button span:last-child {
-  position:absolute;
-  top:5px;
-  left:6px;
 }
 
 .minimised {

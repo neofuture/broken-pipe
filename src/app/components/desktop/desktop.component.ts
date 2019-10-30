@@ -186,4 +186,12 @@ export class DesktopComponent implements OnInit {
       (windowItem.state.isMaximised ? ' maximised' : '') +
       (windowItem.state.isMinimised ? ' minimised' : '');
   }
+
+  toggleBlocky() {
+    if (document.body.classList.contains('blocky')) {
+      document.body.classList.remove('blocky');
+    } else {
+      document.body.classList.add('blocky');
+    }
+  }
 }
