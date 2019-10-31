@@ -18,6 +18,7 @@ html {
   -ms-user-select: none;
   user-select: none;
   box-sizing:border-box;
+  outline: none;
 }
 
 button {

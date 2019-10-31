@@ -10,6 +10,8 @@
 10) ~~css style issues on chrome~~
 11) ~~when a window is maximised, clicking on the title bar 'restores' the window and makes it none maximised~~
 12) ~~window without a tab creates a blank spade which alters the width of the tabs, this may be that the math to space them needs to exclude hasTab === false~~
+13) ~~window icons~~
+14) ~~toolbar tab icons~~
 
 * Should a window return to the view port in the same state is was minimised ?
 ** on window minimise should we search for the window that is the last used IE the highest zIndex that was last used, and activate that window

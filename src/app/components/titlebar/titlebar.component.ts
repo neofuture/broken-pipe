@@ -49,11 +49,11 @@ export class TitleBarComponent implements OnInit {
   }
 
   toggleBlocky() {
-    document.body.classList.add('noTransition');
+    // document.body.classList.add('noTransition');
     document.body.classList.contains('blocky') ? document.body.classList.remove('blocky') : document.body.classList.add('blocky');
-    setTimeout(() => {
-      document.body.classList.remove('noTransition');
-    });
+    // setTimeout(() => {
+    //   document.body.classList.remove('noTransition');
+    // });
   }
 
   addWindow() {
