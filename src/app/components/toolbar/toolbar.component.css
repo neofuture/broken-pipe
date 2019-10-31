@@ -1,46 +1,47 @@
 .closed, .new {
-  opacity:0;
+  opacity: 0;
   transition: opacity 200ms, width 200ms, height, 200ms;
 }
 
 .open {
-  opacity:1;
+  opacity: 1;
   transition: opacity 200ms, width 200ms, height, 200ms;
 }
 
 .tabItem {
-  display:inline-block;
-  padding:4px;
-  margin:4px;
-  border-radius:4px;
+  display: inline-block;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 4px;
   background-color: var(--background-grey);
   cursor: pointer;
-  max-width:180px;
-  line-height: 24px;
-  height:24px;
+  max-width: 180px;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
   -o-transform: translateZ(0);
   transform: translateZ(0);
-  color:var(--text);
+  color: var(--text);
+  position: relative;
 }
+
 .tabItem .text {
-  width:calc(100% - 56px);
+  width: calc(100% - 56px);
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow:hidden;
-  display:inline-block;
-  position: relative;
-  top: -3px;
-  left: 5px;
+  overflow: hidden;
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  left: 28px;
 }
 
 .tabItemIcon {
-  font-size:21px;
-  position:relative;
-  top:1px;
+  font-size: 21px;
+  position: relative;
+  top: 1px;
 }
+
 /*.tabItemText {*/
 /*  display: inline-block;*/
 /*  line-height: 0;*/
@@ -51,7 +52,7 @@
 /*}*/
 
 .active {
-  color:var(--background-color);
+  color: var(--background-color);
   background-color: var(--primary-light);
 }
 
@@ -64,25 +65,25 @@
   color: var(--background-color);
   padding: 0;
   float: right;
-  cursor:pointer;
-  position:relative;
+  cursor: pointer;
+  position: relative;
   transition: opacity 200ms, width 200ms, height, 200ms;
-  margin:2px;
+  margin: 2px;
 }
 
 .active button {
   color: var(--primary);
-  background-color:var(--background-color);
+  background-color: var(--background-color);
   transition: opacity 200ms, width 200ms, height, 200ms;
 
 }
 
 .minimised {
-  border-bottom:4px solid orange;
+  border-bottom: 4px solid orange;
   border-bottom-style: inset;
-  padding-bottom:0;
+  padding-bottom: 0;
 }
 
 .minimised * {
-  border:none;
+  border: none;
 }
