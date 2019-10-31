@@ -30,13 +30,26 @@
 }
 
 .titleBar {
-  background-color:var(--background-min-grey);
-  height:24px;
+  background-color: var(--background-min-grey);
+  height: 24px;
   padding: 4px;
-  border-radius:3px;
+  border-radius: 3px;
   transition: all 0.3s;
-  line-height:23px;
   cursor: move;
+  color: var(--text);
+}
+.titleBarIcon {
+  font-size:21px;
+  position:relative;
+  top:1px;
+}
+.titleBarText {
+  display: inline-block;
+  line-height: 0;
+  position: relative;
+  top: -3px;
+  left: 5px;
+  width:calc(100% - 100px);
 }
 
 .active .titleBar {

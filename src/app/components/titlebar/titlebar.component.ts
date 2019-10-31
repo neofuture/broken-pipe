@@ -11,16 +11,17 @@ export class TitleBarComponent implements OnInit {
   title = 'Test Window';
   hasTab = true;
   resizable = true;
+  icon = 'locationPin';
 
   constructor(private windowService: WindowService) {
   }
 
   ngOnInit() {
-    this.windowService.new(true, 'No Tab', false, true);
-    this.windowService.new(true, 'Not Resizable', true, false);
-    this.windowService.new(false, 'No Title Bar', true, true);
-    this.windowService.new(true, 'Test Window 4', true, true);
-    this.windowService.new(true, 'Test Window 5', true, true);
+    this.windowService.new('diary', true, 'No Tab', false, true);
+    this.windowService.new('diary', true, 'Not Resizable', true, false);
+    this.windowService.new('diary', false, 'No Title Bar', true, true);
+    this.windowService.new('diary', true, 'Test Window 4', true, true);
+    this.windowService.new('diary', true, 'Test Window 5', true, true);
   }
 
   toggleBlocky() {
@@ -33,6 +34,7 @@ export class TitleBarComponent implements OnInit {
 
   addWindow() {
     this.windowService.new(
+      this.icon,
       JSON.parse(String(this.hasTitleBar)),
       this.title,
       JSON.parse(String(this.hasTab)),

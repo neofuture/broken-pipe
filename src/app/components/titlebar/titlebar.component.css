@@ -11,3 +11,7 @@
   background-color:var(--background-grey);
   height:74px;
 }
+
+.icon {
+  font-family: 'Window';
+}
