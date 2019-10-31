@@ -32,8 +32,9 @@
   overflow: hidden;
   display: inline-block;
   position: absolute;
-  top: 8px;
+  top: 7px;
   left: 28px;
+  font-size: 14px;
 }
 
 .tabItemIcon {

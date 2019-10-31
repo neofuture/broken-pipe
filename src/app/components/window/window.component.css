@@ -50,6 +50,7 @@
   top: -3px;
   left: 5px;
   width:calc(100% - 100px);
+  font-size: 14px;
 }
 
 .active .titleBar {
