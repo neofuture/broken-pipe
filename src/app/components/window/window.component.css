@@ -30,7 +30,7 @@
 }
 
 .titleBar {
-  background-color: var(--background-min-grey);
+  background-color: var(--background-grey);
   height: 24px;
   padding: 4px;
   border-radius: 3px;

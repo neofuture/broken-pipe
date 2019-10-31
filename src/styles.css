@@ -12,20 +12,18 @@ body{
 }
 
 .blocky .windowItem.active {
+  /*background-color: transparent !important;*/
+  box-shadow: none !important;
+  padding:7px !important;
   border: none !important;
   background-color: rgba(0,0,0,0) !important;
-  padding:7px !important;
+  /*padding:7px !important;*/
 }
 
 .blocky .windowItem.maximised {
   padding:0 !important;
 }
 
-.blocky .windowItem.active {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  padding:0 !important;
-}
 .blocky .titleBar{
   border:1px solid #c8c7c9 !important;
   /*border-bottom:none !important;*/
@@ -103,4 +101,14 @@ button {
   /*--background-grey: #4a4a4a;*/
   /*--background-min-grey: #6c6c6c;*/
   /*--background-darker-grey: #454545;*/
+}
+
+.blocky {
+  --primary: #009b3a;
+  --primary-light: #00bc3e;
+  --text: #444444;
+  --background-color: #ffffff;
+  --background-grey: #ebebeb;
+  --background-min-grey: #dedede;
+  --background-darker-grey: #e0dfe1;
 }

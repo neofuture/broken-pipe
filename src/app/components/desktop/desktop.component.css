@@ -1,6 +1,6 @@
 .desktop {
   width:100%;
-  overflow:auto;
+  overflow:hidden;
   background-color:var(--background-color);
   position:relative;
 }

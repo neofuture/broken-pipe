@@ -241,14 +241,18 @@ export class WindowComponent implements OnInit {
 
   moveGo(event) {
     if (this.dragWindowItem !== null) {
+      let padding = 0;
+      if(document.body.classList.contains('blocky')){
+        padding = 10;
+      }
       const x = event.pageX;
       const y = event.pageY;
 
       let xOff = (x + this.dragWindowItem.entities.xOffset);
       let yOff = (y + this.dragWindowItem.entities.yOffset);
 
-      if (yOff <= 1) {
-        yOff = 1;
+      if (yOff <= 1 - padding) {
+        yOff = 1 - padding;
       }
 
       if (yOff > this.innerHeight - ((this.toolbarHeight * 2) + this.titleBarTopHeight)) {

@@ -12,6 +12,7 @@
 12) ~~window without a tab creates a blank spade which alters the width of the tabs, this may be that the math to space them needs to exclude hasTab === false~~
 13) ~~window icons~~
 14) ~~toolbar tab icons~~
+15) Fix the toggle style to also allow for better window containment in the desktop area, as we have padded the window container this need to be subtracted from the window methods in the window service 
 
 * Should a window return to the view port in the same state is was minimised ?
 ** on window minimise should we search for the window that is the last used IE the highest zIndex that was last used, and activate that window
