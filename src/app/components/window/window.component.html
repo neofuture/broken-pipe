@@ -14,7 +14,9 @@
 >
   <div *ngIf="windowItem.hasTitleBar === true" class="titleBar"
        (mousedown)="moveStart($event, windowItem)"
-       (touchstart)="moveStart($event, windowItem)">
+       (touchstart)="moveStart($event, windowItem)"
+       (dblclick)="maximiseWindow($event, windowItem)"
+  >
     <span class="titleBarIcon ow-{{ windowItem.icon }}"></span>
     <div class="titleBarText">{{ windowItem.title }}</div>
     <button class="windowButton ow-close" (click)="closeWindow($event, windowItem)"></button>

@@ -165,6 +165,8 @@ export class WindowService {
   maximise(windowItem: WindowModel) {
     if (windowItem.resizable) {
       windowItem.state.isMaximised = !windowItem.state.isMaximised;
+      windowItem.class = 'open active' +
+        (windowItem.state.isMaximised ? ' maximised' : '');
     }
   }
 
