@@ -45,6 +45,26 @@ export class WindowComponent implements OnInit {
     }
   }
 
+  @HostListener('document:touchmove', ['$event'])
+  onTouchMove(event) {
+    if (this.resizeWindowItem !== null) {
+      this.resizeGo(event);
+    }
+    if (this.dragWindowItem !== null) {
+      this.moveGo(event);
+    }
+  }
+
+  @HostListener('document:touchend')
+  onTouchEnd() {
+    if (this.resizeWindowItem !== null) {
+      this.resizeStop();
+    }
+    if (this.dragWindowItem !== null) {
+      this.moveStop();
+    }
+  }
+
   @HostListener('window:resize')
   onResize() {
     this.resize();
@@ -112,6 +132,31 @@ export class WindowComponent implements OnInit {
 
   resizeCursorRestore() {
     document.body.style.cursor = '';
+  }
+
+  resizeTouchStart(event, windowItem: WindowModel) {
+    const xOff = event.layerX;
+    const yOff = event.layerY;
+
+    const resizeCornerSize = 15;
+    this.resizeDirection = '';
+
+    if (yOff <= resizeCornerSize) {
+      this.resizeDirection += 'n';
+    } else {
+      if (yOff >= event.target.offsetHeight - resizeCornerSize) {
+        this.resizeDirection += 's';
+      }
+    }
+
+    if (xOff <= resizeCornerSize) {
+      this.resizeDirection += 'w';
+    } else {
+      if (xOff >= event.target.offsetWidth - resizeCornerSize) {
+        this.resizeDirection += 'e';
+      }
+    }
+    this.resizeStart(event, windowItem);
   }
 
   resizeStart(event, windowItem: WindowModel) {
@@ -222,17 +267,22 @@ export class WindowComponent implements OnInit {
   }
 
   moveStart(event, windowItem: WindowModel) {
-    if (!event.target.classList.contains('titleBar')) {
-      return false;
-    }
+    // if (!event.target.classList.contains('titleBar')) {
+    //   return false;
+    // }
     this.dragWindowItem = windowItem;
     this.makeWindowActive(this.dragWindowItem);
 
     const x = event.pageX;
     const y = event.pageY;
 
-    this.dragWindowItem.entities.xOffset = event.target.parentNode.offsetLeft - x;
-    this.dragWindowItem.entities.yOffset = event.target.parentNode.offsetTop - y;
+    let element = event.target;
+    while (!element.classList.contains('titleBar')) {
+      element = element.parentNode;
+    }
+
+    this.dragWindowItem.entities.xOffset = element.parentNode.offsetLeft - x;
+    this.dragWindowItem.entities.yOffset = element.parentNode.offsetTop - y;
     this.dragWindowItem.class = 'open active noTransition' +
       (this.dragWindowItem.state.isMaximised ? ' maximised' : '') +
       (this.dragWindowItem.state.isMinimised ? ' minimised' : '');

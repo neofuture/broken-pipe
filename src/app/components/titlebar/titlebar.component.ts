@@ -48,9 +48,9 @@ export class TitleBarComponent implements OnInit {
     return this.iconArray[Math.floor(Math.random() * this.iconArray.length)];
   }
 
-  toggleBlocky() {
+  toggleCompusoft() {
     // document.body.classList.add('noTransition');
-    document.body.classList.contains('blocky') ? document.body.classList.remove('blocky') : document.body.classList.add('blocky');
+    document.body.classList.contains('compusoft') ? document.body.classList.remove('compusoft') : document.body.classList.add('compusoft');
     // setTimeout(() => {
     //   document.body.classList.remove('noTransition');
     // });

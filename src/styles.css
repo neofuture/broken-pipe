@@ -118,17 +118,17 @@ body{
   padding:0;
   font-size:13px;
 }
-body.blocky, .blocky * {
+body.compusoft, .compusoft *:not(pre) {
   font-family: "IBM Plex Sans Condensed";
 }
 
-.blocky .windowItem {
+.compusoft .windowItem {
   border: none !important;
   background-color: rgba(0,0,0,0) !important;
   padding:7px !important;
 }
 
-.blocky .windowItem.active {
+.compusoft .windowItem.active {
   /*background-color: transparent !important;*/
   box-shadow: none !important;
   padding:7px !important;
@@ -137,18 +137,18 @@ body.blocky, .blocky * {
   /*padding:7px !important;*/
 }
 
-.blocky .windowItem.maximised {
+.compusoft .windowItem.maximised {
   padding:0 !important;
 }
 
-.blocky .titleBar{
+.compusoft .titleBar{
   border:1px solid #c8c7c9 !important;
   /*border-bottom:none !important;*/
   margin:0 !important;
   width: calc(100% - 10px) !important;
   border-radius:0 !important;
 }
-.blocky .clientArea{
+.compusoft .clientArea{
   border:1px solid #e0dfe1 !important;
   border-top:none !important;
   margin:0 !important;
@@ -157,31 +157,31 @@ body.blocky, .blocky * {
   width:calc(100% - 14px) !important;
   height:calc(100% - 46px) !important;
 }
-.blocky .windowButton {
+.compusoft .windowButton {
   border-radius:0 !important;
   background-color:transparent !important;
   color:#444444 !important;
 }
 
-.blocky .active .windowButton {
+.compusoft .active .windowButton {
   color:white !important;
 }
 
-.blocky .tabButton {
+.compusoft .tabButton {
   border-radius:0 !important;
   background-color:transparent !important;
   color:#444444 !important;
 }
 
-.blocky .active .tabButton {
+.compusoft .active .tabButton {
   color:white !important;
 }
 
-.blocky .tabItem {
+.compusoft .tabItem {
   border-radius: 0 !important;
 }
 
-.blocky .fullHeight {
+.compusoft .fullHeight {
   height:100% !important;
   margin-top:1px !important;
   border-top:1px solid #e0dfe1 !important;
@@ -221,7 +221,7 @@ button {
   /*--background-darker-grey: #454545;*/
 }
 
-.blocky {
+.compusoft {
   --primary: #009b3a;
   --primary-light: #00bc3e;
   --text: #444444;

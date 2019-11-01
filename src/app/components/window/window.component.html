@@ -3,6 +3,7 @@
      (mousemove)="resizeCursorSet($event, windowItem)"
      (mouseout)="resizeCursorRestore()"
      (mousedown)="resizeStart($event, windowItem)"
+     (touchstart)="resizeTouchStart($event, windowItem)"
      [ngStyle]="{
                   top: windowItem.top + 'px',
                   left: windowItem.left + 'px',
@@ -11,7 +12,9 @@
                   zIndex: windowItem.zIndex
                  }"
 >
-  <div *ngIf="windowItem.hasTitleBar === true" class="titleBar" (mousedown)="moveStart($event, windowItem)">
+  <div *ngIf="windowItem.hasTitleBar === true" class="titleBar"
+       (mousedown)="moveStart($event, windowItem)"
+       (touchstart)="moveStart($event, windowItem)">
     <span class="titleBarIcon ow-{{ windowItem.icon }}"></span>
     <div class="titleBarText">{{ windowItem.title }}</div>
     <button class="windowButton ow-close" (click)="closeWindow($event, windowItem)"></button>
