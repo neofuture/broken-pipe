@@ -95,7 +95,24 @@ export class TitleBarComponent implements OnInit {
       .setProperty('--background-darker-grey', this.backgroundDarkerGrey);
     document.documentElement.style
       .setProperty('--box-shadow', this.boxShadow);
+  }
 
-
+  revertTheme() {
+    document.documentElement.style
+      .removeProperty('--primary');
+    document.documentElement.style
+      .removeProperty('--primary-light');
+    document.documentElement.style
+      .removeProperty('--text');
+    document.documentElement.style
+      .removeProperty('--background-color');
+    document.documentElement.style
+      .removeProperty('--background-grey');
+    document.documentElement.style
+      .removeProperty('--background-min-grey');
+    document.documentElement.style
+      .removeProperty('--background-darker-grey');
+    document.documentElement.style
+      .removeProperty('--box-shadow');
   }
 }

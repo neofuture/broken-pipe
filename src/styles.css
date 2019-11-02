@@ -189,6 +189,10 @@ body.compusoft, .compusoft *:not(pre) {
 .compusoft .titleBarText {
   text-align:center;
 }
+
+.compusoft .tabItem .text {
+  text-align: center;
+}
 .noTransition * {
   transition: all 0s !important;
 }
