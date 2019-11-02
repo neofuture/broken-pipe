@@ -9,7 +9,8 @@
 
 .toolbar {
   background-color:var(--background-grey);
-  height:74px;
+  color:var(--text);
+  height:84px;
 }
 
 .icon {

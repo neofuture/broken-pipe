@@ -32,6 +32,14 @@ export class TitleBarComponent implements OnInit {
     'tree_line_horizontal', 'tree_line', 'tree_t', 'upArrow', 'users_over',
     'users', 'world', 'oceanworks', 'minimise', 'restore', 'maximise', 'close'];
 
+  primary = '#337799';
+  primaryLight = '#438eb5';
+  text = '#c1c1c1';
+  backgroundColor = '#222222';
+  backgroundGrey = '#4a4a4a';
+  backgroundMinGrey = '#6c6c6c';
+  backgroundDarkerGrey = '#454545';
+
 
   constructor(private windowService: WindowService) {
   }
@@ -68,5 +76,24 @@ export class TitleBarComponent implements OnInit {
 
   closeAllWindows() {
     this.windowService.closeAll();
+  }
+
+  setTheme() {
+    document.documentElement.style
+      .setProperty('--primary', this.primary);
+    document.documentElement.style
+      .setProperty('--primary-light', this.primaryLight);
+    document.documentElement.style
+      .setProperty('--text', this.text);
+    document.documentElement.style
+      .setProperty('--background-color', this.backgroundColor);
+    document.documentElement.style
+      .setProperty('--background-grey', this.backgroundGrey);
+    document.documentElement.style
+      .setProperty('--background-min-grey', this.backgroundMinGrey);
+    document.documentElement.style
+      .setProperty('--background-darker-grey', this.backgroundDarkerGrey);
+
+
   }
 }

@@ -8,8 +8,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TitleBarComponent } from './components/titlebar/titlebar.component';
 import { PrettyPrintPipe } from './pipes/pretty-print.pipe';
 import { JsonPipe } from './pipes/json.pipe';
-import {WindowService} from './services/window.service';
-import {FormsModule} from '@angular/forms';
+import { WindowService } from './services/window.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

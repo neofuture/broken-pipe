@@ -48,7 +48,9 @@ export class WindowService {
       state: {
         active: true,
         isMinimised: false,
-        isMaximised: false
+        isMaximised: false,
+        isMaximisedLeft: false,
+        isMaximisedRight: false
       }
     };
 

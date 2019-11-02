@@ -21,5 +21,7 @@ export interface WindowModel {
     active: boolean;
     isMinimised: boolean;
     isMaximised: boolean;
+    isMaximisedLeft: boolean;
+    isMaximisedRight: boolean;
   };
 }

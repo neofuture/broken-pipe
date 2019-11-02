@@ -24,7 +24,6 @@ export class WindowComponent implements OnInit {
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
 
-
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
     if (this.resizeWindowItem !== null) {
