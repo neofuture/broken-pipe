@@ -186,7 +186,9 @@ body.compusoft, .compusoft *:not(pre) {
   margin-top:1px !important;
   border-top:1px solid #e0dfe1 !important;
 }
-
+.compusoft .titleBarText {
+  text-align:center;
+}
 .noTransition * {
   transition: all 0s !important;
 }
