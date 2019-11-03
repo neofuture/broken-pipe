@@ -142,14 +142,14 @@ body.compusoft, .compusoft *:not(pre) {
 }
 
 .compusoft .titleBar{
-  border:1px solid #c8c7c9 !important;
+  border:1px solid var(--background-darker-grey) !important;
   /*border-bottom:none !important;*/
   margin:0 !important;
   width: calc(100% - 10px) !important;
   border-radius:0 !important;
 }
 .compusoft .clientArea{
-  border:1px solid #e0dfe1 !important;
+  border:1px solid var(--background-darker-grey) !important;
   border-top:none !important;
   margin:0 !important;
   padding:6px !important;
@@ -160,21 +160,21 @@ body.compusoft, .compusoft *:not(pre) {
 .compusoft .windowButton {
   border-radius:0 !important;
   background-color:transparent !important;
-  color:#444444 !important;
+  color:var(--text) !important;
 }
 
 .compusoft .active .windowButton {
-  color:white !important;
+  color:var(--background-color) !important;
 }
 
 .compusoft .tabButton {
   border-radius:0 !important;
   background-color:transparent !important;
-  color:#444444 !important;
+  color:var(--text) !important;
 }
 
 .compusoft .active .tabButton {
-  color:white !important;
+  color:var(--background-color) !important;
 }
 
 .compusoft .tabItem {
@@ -184,7 +184,7 @@ body.compusoft, .compusoft *:not(pre) {
 .compusoft .fullHeight {
   height:100% !important;
   margin-top:1px !important;
-  border-top:1px solid #e0dfe1 !important;
+  border-top:1px solid var(--background-grey) !important;
 }
 .compusoft .titleBarText {
   text-align:center;
@@ -192,6 +192,9 @@ body.compusoft, .compusoft *:not(pre) {
 
 .compusoft .tabItem .text {
   text-align: center;
+}
+.compusoft button {
+  border-radius:0;
 }
 .noTransition * {
   transition: all 0s !important;
@@ -231,9 +234,9 @@ button {
 .compusoft {
   --primary: #009b3a;
   --primary-light: #00bc3e;
-  --text: #444444;
-  --background-color: #ffffff;
-  --background-grey: #ebebeb;
-  --background-min-grey: #dedede;
-  --background-darker-grey: #e0dfe1;
+  /*--text: #444444;*/
+  /*--background-color: #ffffff;*/
+  /*--background-grey: #ebebeb;*/
+  /*--background-min-grey: #dedede;*/
+  /*--background-darker-grey: #e0dfe1;*/
 }

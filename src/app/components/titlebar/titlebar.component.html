@@ -147,23 +147,77 @@
           <td>
             <button (click)="toggleCompusoft()">Toggle Compusoft Style/Colours</button>
           </td>
-          <td>
+        </tr>
+        <tr>
+          <td colspan="10">
+            <table>
+              <tr>
+                <td>
+                  Primary
+                </td>
+                <td>
+                  Light
+                </td>
+                <td>
+                  Text
+                </td>
+                <td>
+                  Background
+                </td>
+                <td>
+                  Grey
+                </td>
+                <td>
+                  Mid Grey
+                </td>
+                <td>
+                  Darker Grey
+                </td>
+                <td>
+                  Box Shadow
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input [(ngModel)]="primary" size="10">
+                  <div [ngStyle]="{backgroundColor: primary, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="primaryLight" size="10">
+                  <div [ngStyle]="{backgroundColor: primaryLight, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="text" size="10">
+                  <div [ngStyle]="{backgroundColor: text, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="backgroundColor" size="10">
+                  <div [ngStyle]="{backgroundColor: backgroundColor, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="backgroundGrey" size="10">
+                  <div [ngStyle]="{backgroundColor: backgroundGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="backgroundMinGrey" size="10">
+                  <div [ngStyle]="{backgroundColor: backgroundMinGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="backgroundDarkerGrey" size="10">
+                  <div [ngStyle]="{backgroundColor: backgroundDarkerGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
+                </td>
+                <td>
+                  <input [(ngModel)]="boxShadow" size="28">
+                </td>
+                <td>
+                  <button (click)="setTheme()">Set Theme</button>
+                </td>
+                <td>
+                  <button (click)="revertTheme()">Reset Theme</button>
+                </td>
+              </tr>
+            </table>
 
-            <input [(ngModel)]="primary" size="7"><div [ngStyle]="{backgroundColor: primary, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="primaryLight" size="7"><div [ngStyle]="{backgroundColor: primaryLight, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="text" size="7"><div [ngStyle]="{backgroundColor: text, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="backgroundColor" size="7"><div [ngStyle]="{backgroundColor: backgroundColor, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="backgroundGrey" size="7"><div [ngStyle]="{backgroundColor: backgroundGrey, display:'inline-block', width: '10px'}">&nbsp;</div><br>
-            <input [(ngModel)]="backgroundMinGrey" size="7"><div [ngStyle]="{backgroundColor: backgroundMinGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="backgroundDarkerGrey" size="7"><div [ngStyle]="{backgroundColor: backgroundDarkerGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
-            <input [(ngModel)]="boxShadow" size="28">
-
-          </td>
-          <td>
-            <button (click)="setTheme()">Set Theme</button>
-          </td>
-          <td>
-            <button (click)="revertTheme()">Reset Theme</button>
           </td>
         </tr>
       </table>
