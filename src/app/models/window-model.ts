@@ -3,6 +3,7 @@ export interface WindowModel {
   title: string;
   class: string;
   body: string;
+  bodyComponent?: string;
   zIndex: number;
   top: number;
   left: number;

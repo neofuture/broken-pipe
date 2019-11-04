@@ -10,7 +10,7 @@ export class WindowService {
   constructor() {
   }
 
-  new(icon: string, hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean) {
+  new(icon: string, hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean, bodyComponent: string) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
     id++;
 
@@ -31,6 +31,7 @@ export class WindowService {
       icon,
       title: title + ' ' + id,
       body: 'testing - ' + title,
+      bodyComponent,
       class: 'new active',
       zIndex,
       top: position.top,
