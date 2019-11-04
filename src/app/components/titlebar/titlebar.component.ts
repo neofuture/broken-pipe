@@ -82,40 +82,24 @@ export class TitleBarComponent implements OnInit {
   }
 
   setTheme() {
-    document.documentElement.style
-      .setProperty('--primary', this.primary);
-    document.documentElement.style
-      .setProperty('--primary-light', this.primaryLight);
-    document.documentElement.style
-      .setProperty('--text', this.text);
-    document.documentElement.style
-      .setProperty('--background-color', this.backgroundColor);
-    document.documentElement.style
-      .setProperty('--background-grey', this.backgroundGrey);
-    document.documentElement.style
-      .setProperty('--background-mid-grey', this.backgroundMidGrey);
-    document.documentElement.style
-      .setProperty('--background-darker-grey', this.backgroundDarkerGrey);
-    document.documentElement.style
-      .setProperty('--box-shadow', this.boxShadow);
+    document.documentElement.style.setProperty('--primary', this.primary);
+    document.documentElement.style.setProperty('--primary-light', this.primaryLight);
+    document.documentElement.style.setProperty('--text', this.text);
+    document.documentElement.style.setProperty('--background-color', this.backgroundColor);
+    document.documentElement.style.setProperty('--background-grey', this.backgroundGrey);
+    document.documentElement.style.setProperty('--background-mid-grey', this.backgroundMidGrey);
+    document.documentElement.style.setProperty('--background-darker-grey', this.backgroundDarkerGrey);
+    document.documentElement.style.setProperty('--box-shadow', this.boxShadow);
   }
 
   revertTheme() {
-    document.documentElement.style
-      .removeProperty('--primary');
-    document.documentElement.style
-      .removeProperty('--primary-light');
-    document.documentElement.style
-      .removeProperty('--text');
-    document.documentElement.style
-      .removeProperty('--background-color');
-    document.documentElement.style
-      .removeProperty('--background-grey');
-    document.documentElement.style
-      .removeProperty('--background-mid-grey');
-    document.documentElement.style
-      .removeProperty('--background-darker-grey');
-    document.documentElement.style
-      .removeProperty('--box-shadow');
+    document.documentElement.style.removeProperty('--primary');
+    document.documentElement.style.removeProperty('--primary-light');
+    document.documentElement.style.removeProperty('--text');
+    document.documentElement.style.removeProperty('--background-color');
+    document.documentElement.style.removeProperty('--background-grey');
+    document.documentElement.style.removeProperty('--background-mid-grey');
+    document.documentElement.style.removeProperty('--background-darker-grey');
+    document.documentElement.style.removeProperty('--box-shadow');
   }
 }
