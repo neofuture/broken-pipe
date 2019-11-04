@@ -37,7 +37,7 @@ export class TitleBarComponent implements OnInit {
   text = '#c1c1c1';
   backgroundColor = '#1d1d1d';
   backgroundGrey = '#282828';
-  backgroundMinGrey = '#6c6c6c';
+  backgroundMidGrey = '#6c6c6c';
   backgroundDarkerGrey = '#353535';
   boxShadow = 'none';
 
@@ -90,7 +90,7 @@ export class TitleBarComponent implements OnInit {
     document.documentElement.style
       .setProperty('--background-grey', this.backgroundGrey);
     document.documentElement.style
-      .setProperty('--background-min-grey', this.backgroundMinGrey);
+      .setProperty('--background-mid-grey', this.backgroundMidGrey);
     document.documentElement.style
       .setProperty('--background-darker-grey', this.backgroundDarkerGrey);
     document.documentElement.style
@@ -109,7 +109,7 @@ export class TitleBarComponent implements OnInit {
     document.documentElement.style
       .removeProperty('--background-grey');
     document.documentElement.style
-      .removeProperty('--background-min-grey');
+      .removeProperty('--background-mid-grey');
     document.documentElement.style
       .removeProperty('--background-darker-grey');
     document.documentElement.style

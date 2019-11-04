@@ -136,16 +136,16 @@
             </select>
           </td>
           <td>
-            <button (click)="addWindow()">Add Window</button>
+            <button (click)="addWindow()">Add</button>
           </td>
           <td>
             |
           </td>
           <td>
-            <button (click)="closeAllWindows()">Close All Windows</button>
+            <button (click)="closeAllWindows()">Close All</button>
           </td>
           <td>
-            <button (click)="toggleCompusoft()">Toggle Compusoft Style/Colours</button>
+            <button (click)="toggleCompusoft()">CS Theme</button>
           </td>
         </tr>
         <tr>
@@ -162,52 +162,52 @@
                   Text
                 </td>
                 <td>
-                  Background
+                  Back
                 </td>
                 <td>
                   Grey
                 </td>
                 <td>
-                  Mid Grey
+                  Mid
                 </td>
                 <td>
-                  Darker Grey
+                  Darker
                 </td>
                 <td>
-                  Box Shadow
+                  Box
                 </td>
               </tr>
               <tr>
                 <td>
-                  <input [(ngModel)]="primary" size="10">
+                  <input [(ngModel)]="primary" size="6">
                   <div [ngStyle]="{backgroundColor: primary, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="primaryLight" size="10">
+                  <input [(ngModel)]="primaryLight" size="6">
                   <div [ngStyle]="{backgroundColor: primaryLight, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="text" size="10">
+                  <input [(ngModel)]="text" size="6">
                   <div [ngStyle]="{backgroundColor: text, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="backgroundColor" size="10">
+                  <input [(ngModel)]="backgroundColor" size="6">
                   <div [ngStyle]="{backgroundColor: backgroundColor, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="backgroundGrey" size="10">
+                  <input [(ngModel)]="backgroundGrey" size="6">
                   <div [ngStyle]="{backgroundColor: backgroundGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="backgroundMinGrey" size="10">
-                  <div [ngStyle]="{backgroundColor: backgroundMinGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
+                  <input [(ngModel)]="backgroundMidGrey" size="6">
+                  <div [ngStyle]="{backgroundColor: backgroundMidGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="backgroundDarkerGrey" size="10">
+                  <input [(ngModel)]="backgroundDarkerGrey" size="6">
                   <div [ngStyle]="{backgroundColor: backgroundDarkerGrey, display:'inline-block', width: '10px'}">&nbsp;</div>
                 </td>
                 <td>
-                  <input [(ngModel)]="boxShadow" size="28">
+                  <input [(ngModel)]="boxShadow" size="14">
                 </td>
                 <td>
                   <button (click)="setTheme()">Set Theme</button>
