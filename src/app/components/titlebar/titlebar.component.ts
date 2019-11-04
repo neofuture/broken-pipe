@@ -40,6 +40,7 @@ export class TitleBarComponent implements OnInit {
   backgroundMidGrey = '#6c6c6c';
   backgroundDarkerGrey = '#353535';
   boxShadow = 'none';
+  theme = 'CS Theme';
 
   constructor(private windowService: WindowService) {
   }
@@ -57,11 +58,13 @@ export class TitleBarComponent implements OnInit {
   }
 
   toggleCompusoft() {
-    // document.body.classList.add('noTransition');
-    document.body.classList.contains('compusoft') ? document.body.classList.remove('compusoft') : document.body.classList.add('compusoft');
-    // setTimeout(() => {
-    //   document.body.classList.remove('noTransition');
-    // });
+    if (document.body.classList.contains('compusoft')) {
+      this.theme = 'CS Theme';
+      document.body.classList.remove('compusoft');
+    } else {
+      this.theme = 'Standard';
+      document.body.classList.add('compusoft');
+    }
   }
 
   addWindow() {
