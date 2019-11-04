@@ -18,6 +18,11 @@ import {WindowService} from '../../services/window.service';
   styleUrls: ['./window.component.css']
 })
 export class WindowComponent implements OnInit {
+
+  constructor(
+    private windowService: WindowService,
+    private cfr: ComponentFactoryResolver) {
+  }
   resizeDirection: any;
   innerWidth: number;
   innerHeight: number;
@@ -34,6 +39,8 @@ export class WindowComponent implements OnInit {
 
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
+
+  @ViewChild('viewContainer', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
@@ -80,13 +87,6 @@ export class WindowComponent implements OnInit {
     this.resize();
   }
 
-  @ViewChild('viewContainer', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
-
-  constructor(
-    private windowService: WindowService,
-    private cfr: ComponentFactoryResolver) {
-  }
-
   ngOnInit() {
     console.log(this.windowItem);
 
@@ -99,12 +99,14 @@ export class WindowComponent implements OnInit {
 
     if (this.windowItem.bodyComponent === 'contact-manager') {
       const {MainComponent} = await import('../../modules/contact-manager/main.component');
-      this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      const componentRef = this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      componentRef.instance.windowItem = this.windowItem;
     }
 
     if (this.windowItem.bodyComponent === 'quotes') {
       const {MainComponent} = await import('../../modules/quotes/main.component');
-      this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      const componentRef = this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      componentRef.instance.data = this.windowItem.data;
     }
 
     this.loaded = true;

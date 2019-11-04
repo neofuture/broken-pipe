@@ -82,8 +82,8 @@
   min-width: 20px;
   min-height: 20px;
   color: var(--background-color);
+  float:right;
   padding: 0;
-  float: right;
   cursor:pointer;
   position:relative;
   transition: opacity 200ms, width 200ms, height, 200ms;

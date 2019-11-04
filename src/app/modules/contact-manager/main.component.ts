@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {WindowService} from '../../services/window.service';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  @Input() windowItem: any;
 
-  constructor() { }
+  constructor(private windowService: WindowService) { }
 
   ngOnInit() {
   }
 
+  addWindow(id) {
+    this.windowService.new(
+      'orders',
+      true,
+      'Orders - ' + id,
+      true,
+      true,
+      'quotes',
+    {id}
+    );
+  }
 }

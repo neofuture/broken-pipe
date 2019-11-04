@@ -10,7 +10,7 @@ export class WindowService {
   constructor() {
   }
 
-  new(icon: string, hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean, bodyComponent: string) {
+  new(icon: string, hasTitleBar: boolean, title: string, hasTab: boolean, resizable: boolean, bodyComponent: string, data = null) {
     let id = parseInt(Object.keys(this.windowList)[Object.keys(this.windowList).length - 1], 10) || 0;
     id++;
 
@@ -29,7 +29,7 @@ export class WindowService {
     let windowItem: WindowModel;
     windowItem = {
       icon,
-      title: title + ' ' + id,
+      title,
       body: 'testing - ' + title,
       bodyComponent,
       class: 'new active',
@@ -55,6 +55,9 @@ export class WindowService {
       }
     };
 
+    if (data !== null){
+      windowItem.data = data;
+    }
     this.windowList[id] = windowItem;
     setTimeout(() => {
       this.windowList[id].class = 'open';

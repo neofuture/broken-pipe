@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  @Input() data: any;
+
+  id = 0;
 
   ngOnInit() {
+    if (typeof this.data === 'undefined') {
+      this.data = {};
+      this.data.id = 0;
+    }
   }
 
 }

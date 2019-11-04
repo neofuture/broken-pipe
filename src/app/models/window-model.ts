@@ -25,4 +25,5 @@ export interface WindowModel {
     isMaximisedLeft: boolean;
     isMaximisedRight: boolean;
   };
+  data?: object;
 }
