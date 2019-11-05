@@ -1,4 +1,14 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import {WindowModel} from '../../models/window-model';
 import {WindowService} from '../../services/window.service';
 
@@ -8,6 +18,11 @@ import {WindowService} from '../../services/window.service';
   styleUrls: ['./window.component.css']
 })
 export class WindowComponent implements OnInit {
+
+  constructor(
+    private windowService: WindowService,
+    private cfr: ComponentFactoryResolver) {
+  }
   resizeDirection: any;
   innerWidth: number;
   innerHeight: number;
@@ -15,6 +30,7 @@ export class WindowComponent implements OnInit {
   resizeWindowItem: any = null;
   dragWindowItem: any = null;
   windowList: object;
+  loaded = false;
 
   @Input() titleBarTopHeight: number;
   @Input() toolbarHeight: number;
@@ -23,6 +39,8 @@ export class WindowComponent implements OnInit {
 
   @Output() closing = new EventEmitter<boolean>();
   @Output() closed = new EventEmitter<boolean>();
+
+  @ViewChild('viewContainer', {read: ViewContainerRef}) viewContainer: ViewContainerRef;
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event) {
@@ -69,18 +87,36 @@ export class WindowComponent implements OnInit {
     this.resize();
   }
 
-  constructor(private windowService: WindowService) {
-  }
-
   ngOnInit() {
+    console.log(this.windowItem);
+
     this.resize();
     this.windowList = this.windowService.windowList;
+    this.loadComponent();
+  }
+
+  async loadComponent() {
+
+    if (this.windowItem.bodyComponent === 'contact-manager') {
+      const {MainComponent} = await import('../../modules/contact-manager/main.component');
+      const componentRef = this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      componentRef.instance.windowItem = this.windowItem;
+    }
+
+    if (this.windowItem.bodyComponent === 'quotes') {
+      const {MainComponent} = await import('../../modules/quotes/main.component');
+      const componentRef = this.viewContainer.createComponent(this.cfr.resolveComponentFactory(MainComponent));
+      componentRef.instance.data = this.windowItem.data;
+    }
+
+    this.loaded = true;
   }
 
   resize() {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
   }
+
   closeWindow(event, windowItem) {
     event.stopPropagation();
     windowItem.closing = true;
@@ -291,7 +327,7 @@ export class WindowComponent implements OnInit {
   moveGo(event) {
     if (this.dragWindowItem !== null) {
       let padding = 0;
-      if(document.body.classList.contains('blocky')){
+      if (document.body.classList.contains('blocky')) {
         padding = 10;
       }
       const x = event.pageX;

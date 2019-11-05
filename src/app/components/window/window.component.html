@@ -25,6 +25,9 @@
     <button class="windowButton ow-minimise" *ngIf="windowItem.resizable && windowItem.hasTab" (click)="minimiseWindow($event, windowItem)">
     </button>
   </div>
-  <div class="clientArea" [ngClass]="{'fullHeight': windowItem.hasTitleBar !== true}">{{ windowItem.body }}</div>
+  <div class="clientArea" [ngClass]="{'fullHeight': windowItem.hasTitleBar !== true}">
+    <div *ngIf="!loaded">Loading... </div>
+    <ng-container #viewContainer></ng-container>
+  </div>
 </div>
 

@@ -31,6 +31,7 @@ export class TitleBarComponent implements OnInit {
     'search', 'styles', 'tasks_over', 'tasks', 'templates', 'tree_corner',
     'tree_line_horizontal', 'tree_line', 'tree_t', 'upArrow', 'users_over',
     'users', 'world', 'oceanworks', 'minimise', 'restore', 'maximise', 'close'];
+  bodyComponent = 'contact-manager';
 
   primary = '#337799';
   primaryLight = '#438eb5';
@@ -46,11 +47,11 @@ export class TitleBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.windowService.new(this.getIcon(), true, 'No Tab', false, true);
-    this.windowService.new(this.getIcon(), true, 'Not Resizable', true, false);
-    this.windowService.new(this.getIcon(), false, 'No Title Bar', true, true);
-    this.windowService.new(this.getIcon(), true, 'Test Window 4', true, true);
-    this.windowService.new(this.getIcon(), true, 'Test Window 5', true, true);
+    this.windowService.new(this.getIcon(), true, 'No Tab', false, true, 'contact-manager');
+    this.windowService.new(this.getIcon(), true, 'Not Resizable', true, false, 'contact-manager');
+    this.windowService.new(this.getIcon(), false, 'No Title Bar', true, true, 'contact-manager');
+    this.windowService.new(this.getIcon(), true, 'Test Window 4', true, true, 'contact-manager');
+    this.windowService.new(this.getIcon(), true, 'Test Window 5', true, true, 'contact-manager');
   }
 
   getIcon() {
@@ -73,7 +74,8 @@ export class TitleBarComponent implements OnInit {
       JSON.parse(String(this.hasTitleBar)),
       this.title,
       JSON.parse(String(this.hasTab)),
-      JSON.parse(String(this.resizable))
+      JSON.parse(String(this.resizable)),
+      this.bodyComponent
     );
   }
 
